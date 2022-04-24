@@ -10,7 +10,7 @@ public class view {
 
     public static void menu() {
         int optionnumber;
-        MainWindow mainWindow = new MainWindow();
+        MainFrame mainFrame = new MainFrame();
 
         System.out.print("Choose option: \n1. List of employees\n2. Add a employee\n3. Delete employee\n4. Exit\n");
         optionnumber = in.nextInt();
@@ -44,7 +44,7 @@ public class view {
     }
 
     private static void optiontwo() {
-        Controller.addEmployee();
+        //Controller.addEmployee();
     }
 
     private static void optionthree() {

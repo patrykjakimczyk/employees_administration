@@ -1,9 +1,13 @@
 package com.company.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.math.BigDecimal;
 
+@Getter
+@Setter
 final public class Tradesman extends Employee {
-
     private BigDecimal provision;
     private BigDecimal limitOfProvision;
 
@@ -13,25 +17,9 @@ final public class Tradesman extends Employee {
         this.limitOfProvision = new BigDecimal("0");
     }
 
-    public Tradesman(String pesel, String name, String lastName, String job, BigDecimal salary, String phoneNumber, BigDecimal provision, BigDecimal limitOfProvision) {
-        super(pesel, name, lastName, job, salary, phoneNumber);
+    public Tradesman(String pesel, String name, String lastName, String job, int team, BigDecimal salary, String phoneNumber, BigDecimal provision, BigDecimal limitOfProvision) {
+        super(pesel, name, lastName, job, team, salary, phoneNumber);
         this.provision = provision;
-        this.limitOfProvision = limitOfProvision;
-    }
-
-    public BigDecimal getProvision() {
-        return this.provision;
-    }
-
-    public void setProvision(BigDecimal provision) {
-        this.provision = provision;
-    }
-
-    public BigDecimal getLimitOfProvision() {
-        return this.limitOfProvision;
-    }
-
-    public void setLimitOfProvision(BigDecimal limitOfProvision) {
         this.limitOfProvision = limitOfProvision;
     }
 
