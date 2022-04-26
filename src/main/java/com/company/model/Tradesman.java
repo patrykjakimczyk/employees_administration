@@ -23,6 +23,16 @@ final public class Tradesman extends Employee {
         this.limitOfProvision = limitOfProvision;
     }
 
+    public String toString() {
+        return "'" + pesel + "'" + "'" + name +
+                "'" + "'" + lastName + "'" + "'" + job + "'" +
+                "'" + team + "'" +
+                "'" + salary + "'" +
+                "'" + phoneNumber + "'" +
+                "'" + provision + "'" +
+                "'" + limitOfProvision + "'";
+    }
+
     @Override
     public void removingView() {
         super.removingView();

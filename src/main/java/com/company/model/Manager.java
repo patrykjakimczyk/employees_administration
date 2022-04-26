@@ -42,6 +42,17 @@ final public class Manager extends Employee {
 
 
     @Override
+    public String toString() {
+        return "'" + pesel + "'" + "'" + name +
+                "'" + "'" + lastName + "'" + "'" + job + "'" +
+                "'" + team + "'" +
+                "'" + salary + "'" +
+                "'" + phoneNumber + "'" +
+                "'" + bonusSalary + "'" +
+                "'" + nrOfBussinessCard + "'";
+    }
+
+    @Override
     public void removingView() {
         super.removingView();
         System.out.println("Dodatek sluzbowy: " + this.bonusSalary);

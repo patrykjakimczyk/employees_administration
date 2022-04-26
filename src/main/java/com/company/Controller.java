@@ -1,5 +1,6 @@
 package com.company;
 
+import com.company.db.DataBaseController;
 import com.company.model.Data;
 import com.company.model.Employee;
 import com.company.model.Manager;
@@ -109,6 +110,7 @@ public class Controller {
 
         Employee e = new Employee(pesel, name, lName, job, Integer.parseInt(team), new BigDecimal(salary), phone);
         Data.getListOfEmployees().put(pesel, e);
+        DataBaseController.addToDB(e);
         return true;
     }
 
@@ -150,6 +152,7 @@ public class Controller {
 
             Manager m = new Manager(pesel, name, lName, job, t, s, phone, new BigDecimal(bonusOrProv), cardOrlimit);
             Data.getListOfEmployees().put(pesel, m);
+            DataBaseController.addToDB(m);
             return true;
         } else {
             if (!isValueValid(bonusOrProv)) {
@@ -161,6 +164,7 @@ public class Controller {
 
             Tradesman tm = new Tradesman(pesel, name, lName, job, t, s, phone, new BigDecimal(bonusOrProv), new BigDecimal(cardOrlimit));
             Data.getListOfEmployees().put(pesel, tm);
+            DataBaseController.addToDB(tm);
             return true;
         }
     }

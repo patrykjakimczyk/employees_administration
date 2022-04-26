@@ -21,6 +21,14 @@ public class Employee {
     protected BigDecimal salary;
     protected String phoneNumber;
 
+    public String toString() {
+        return "'" + pesel + "', " + "'" + name +
+                "', " + "'" + lastName + "', " + "'" + job + "', " +
+                "'" + team + "', " +
+                "'" + salary + "', " +
+                "'" + phoneNumber + "'";
+    }
+
     public void removingView() {
         System.out.println("Imię: " + this.name);
         System.out.println("Nazwisko: " + this.lastName);
