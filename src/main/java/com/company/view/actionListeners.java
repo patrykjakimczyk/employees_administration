@@ -1,11 +1,14 @@
 package com.company.view;
 
 import com.company.Controller;
+import com.company.db.DataBaseController;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class actionListeners {
     public static void menuActionListeners(MainFrame frame, MenuPanel menuPanel) {
@@ -14,19 +17,44 @@ public class actionListeners {
             public void actionPerformed(ActionEvent e) {
                 Object source = e.getSource();
                 if (source == menuPanel.list) {
-                    frame.getContentPane().removeAll();
                     ListPanel listPanel = new ListPanel();
-                    //addPanelActionListeners(frame, listPanel, menuPanel);
-                    frame.getContentPane().add(listPanel);
-                    frame.getContentPane().revalidate();
-                    frame.getContentPane().repaint();
+                    listPanelActionListeners(frame, listPanel, menuPanel);
+                    ResultSet table = DataBaseController.employeesListFromDB();
+                    int size = DataBaseController.employeesSizeDB();
+                    listPanel.position.setText("Pracownik: 1/" + size);
+                    try {
+                        table.next();
+                        listPanel.pesel.setText(table.getString("pesel"));
+                        listPanel.name.setText(table.getString("first_name"));
+                        listPanel.lastName.setText(table.getString("last_name"));
+                        listPanel.job.setText(table.getString("job"));
+                        listPanel.team.setText(table.getString("team"));
+                        listPanel.salary.setText(table.getString("salary"));
+                        listPanel.phone.setText(table.getString("phone_nr"));
+                        if (table.getString("job").equals("Handlowiec")) {
+                            listPanel.lBonus.setVisible(false);
+                            listPanel.lCard.setVisible(false);
+                            listPanel.lLimit.setVisible(true);
+                            listPanel.lProvision.setVisible(true);
+                        } else if (table.getString("job").equals("Dyrektor")) {
+                            listPanel.lBonus.setVisible(true);
+                            listPanel.lCard.setVisible(true);
+                            listPanel.lLimit.setVisible(false);
+                            listPanel.lProvision.setVisible(false);
+                        } else {
+                            listPanel.lBonus.setVisible(false);
+                            listPanel.lCard.setVisible(false);
+                            listPanel.lLimit.setVisible(false);
+                            listPanel.lProvision.setVisible(false);
+                        }
+                    } catch (SQLException ex) {
+                        ex.printStackTrace();
+                    }
+                    frame.changeView(listPanel);
                 } else if (source == menuPanel.addEmployee) {
-                    frame.getContentPane().removeAll();
                     AddPanel addPanel = new AddPanel();
+                    frame.changeView(addPanel);
                     addPanelActionListeners(frame, addPanel, menuPanel);
-                    frame.getContentPane().add(addPanel);
-                    frame.getContentPane().revalidate();
-                    frame.getContentPane().repaint();
                 } else if (source == menuPanel.exit) {
 
                 }
@@ -37,22 +65,35 @@ public class actionListeners {
         menuPanel.exit.addActionListener(actionListener);
     }
 
+    public static void listPanelActionListeners(MainFrame frame, ListPanel listPanel, MenuPanel menuPanel) {
+        ActionListener actionListener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Object source = e.getSource();
+                if (source == listPanel.returnBtn) {
+                    frame.changeView(menuPanel);
+                } else if (source == listPanel.nextBtn) {
+
+                } else if (source == listPanel.prevBtn) {
+
+                }
+
+            }
+        };
+        listPanel.returnBtn.addActionListener(actionListener);
+    }
+
     public static void addPanelActionListeners(MainFrame frame, AddPanel addPanel, MenuPanel menuPanel) {
         ActionListener actionListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Object source = e.getSource();
                 if (source == addPanel.returnBtn) {
-                    frame.getContentPane().removeAll();
-                    frame.getContentPane().add(menuPanel);
-                    frame.getContentPane().revalidate();
-                    frame.getContentPane().repaint();
-                } else if (source == addPanel.addBtn) {
+                    frame.changeView(menuPanel);
                 }
             }
         };
         addPanel.returnBtn.addActionListener(actionListener);
-        addPanel.addBtn.addActionListener(actionListener);
     }
 
     public static void choiceActionListener(AddPanel addPanel, JComboBox choice, JButton addBtn) {

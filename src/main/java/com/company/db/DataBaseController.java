@@ -4,6 +4,7 @@ import com.company.model.Employee;
 import com.company.model.Manager;
 import com.company.model.Tradesman;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -35,5 +36,41 @@ public final class DataBaseController {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public static int employeesSizeDB() {
+        DataBaseConnection dbConnection = new DataBaseConnection();
+        String query = "";
+        ResultSet result;
+        int size = 0;
+        try {
+            Statement statement = dbConnection.getConnection().createStatement();
+            query = "SELECT COUNT(*) FROM employees";
+            result = statement.executeQuery(query);
+            if (result.next()) {
+                size = Integer.parseInt(result.getString(1));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            result = null;
+        }
+
+        return size;
+    }
+
+    public static ResultSet employeesListFromDB() {
+        DataBaseConnection dbConnection = new DataBaseConnection();
+        String query = "";
+        ResultSet result;
+        try {
+            Statement statement = dbConnection.getConnection().createStatement();
+            query = "SELECT * FROM employees";
+            result = statement.executeQuery(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            result = null;
+        }
+
+        return result;
     }
 }

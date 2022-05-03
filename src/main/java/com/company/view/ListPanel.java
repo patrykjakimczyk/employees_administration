@@ -8,12 +8,17 @@ public class ListPanel extends JPanel {
     JLabel name;
     JLabel lastName;
     JLabel job;
+    JLabel team;
     JLabel salary;
     JLabel phone;
     JLabel bonus;
+    JLabel lBonus;
     JLabel card;
+    JLabel lCard;
     JLabel provision;
+    JLabel lProvision;
     JLabel limit;
+    JLabel lLimit;
     JLabel position;
     JButton returnBtn;
     JButton prevBtn;
@@ -75,35 +80,48 @@ public class ListPanel extends JPanel {
         job.setFont(new Font("Arial", Font.PLAIN, 25));
         this.add(job);
 
+        JLabel lteam = new JLabel("Stanowisko: ");
+        lteam.setSize(200, 30);
+        lteam.setLocation(150, 250);
+        lteam.setFont(new Font("Arial", Font.PLAIN, 30));
+        //lteam.setHorizontalAlignment(SwingConstants.RIGHT);
+        this.add(lteam);
+
+        team = new JLabel();
+        team.setSize(300, 30);
+        team.setLocation(350, 250);
+        team.setFont(new Font("Arial", Font.PLAIN, 25));
+        this.add(team);
+
         JLabel lsalary = new JLabel("Pensja: ");
         lsalary.setSize(200, 30);
-        lsalary.setLocation(150, 250);
+        lsalary.setLocation(150, 295);
         lsalary.setFont(new Font("Arial", Font.PLAIN, 30));
         //lsalary.setHorizontalAlignment(SwingConstants.RIGHT);
         this.add(lsalary);
 
         salary = new JLabel();
         salary.setSize(300, 30);
-        salary.setLocation(350, 250);
+        salary.setLocation(350, 295);
         salary.setFont(new Font("Arial", Font.PLAIN, 25));
         this.add(salary);
 
         JLabel lphone = new JLabel("Nr telefonu:");
         lphone.setSize(200, 30);
-        lphone.setLocation(150, 295);
+        lphone.setLocation(150, 340);
         lphone.setFont(new Font("Arial", Font.PLAIN, 30));
         //lphone.setHorizontalAlignment(SwingConstants.RIGHT);
         this.add(lphone);
 
         phone = new JLabel();
         phone.setSize(300, 30);
-        phone.setLocation(350, 295);
+        phone.setLocation(350, 340);
         phone.setFont(new Font("Arial", Font.PLAIN, 25));
         this.add(phone);
 
-        JLabel lBonus = new JLabel("Bonus:");
+        lBonus = new JLabel("Bonus:");
         lBonus.setSize(200, 30);
-        lBonus.setLocation(150, 340);
+        lBonus.setLocation(150, 385);
         lBonus.setFont(new Font("Arial", Font.PLAIN, 30));
         //lBonus.setHorizontalAlignment(SwingConstants.RIGHT);
         lBonus.setVisible(false);
@@ -111,14 +129,14 @@ public class ListPanel extends JPanel {
 
         bonus = new JLabel();
         bonus.setSize(300, 30);
-        bonus.setLocation(350, 340);
+        bonus.setLocation(350, 385);
         bonus.setFont(new Font("Arial", Font.PLAIN, 25));
         bonus.setVisible(false);
         this.add(bonus);
 
-        JLabel lCard = new JLabel("Nr karty biznesowej:");
+        lCard = new JLabel("Nr karty biznesowej:");
         lCard.setSize(200, 30);
-        lCard.setLocation(150, 385);
+        lCard.setLocation(150, 420);
         lCard.setFont(new Font("Arial", Font.PLAIN, 30));
         //lCard.setHorizontalAlignment(SwingConstants.RIGHT);
         lCard.setVisible(false);
@@ -126,40 +144,40 @@ public class ListPanel extends JPanel {
 
         card = new JLabel();
         card.setSize(300, 30);
-        card.setLocation(350, 385);
+        card.setLocation(350, 420);
         card.setFont(new Font("Arial", Font.PLAIN, 25));
         card.setVisible(false);
         this.add(card);
 
-        JLabel lProvision = new JLabel("Prowizja:");
+        lProvision = new JLabel("Prowizja:");
         lProvision.setSize(200, 30);
-        lProvision.setLocation(150, 340);
+        lProvision.setLocation(150, 385);
         lProvision.setFont(new Font("Arial", Font.PLAIN, 30));
         //lProvision.setHorizontalAlignment(SwingConstants.RIGHT);
         this.add(lProvision);
 
         provision = new JLabel();
         provision.setSize(300, 30);
-        provision.setLocation(350, 340);
+        provision.setLocation(350, 385);
         provision.setFont(new Font("Arial", Font.PLAIN, 25));
         this.add(provision);
 
-        JLabel lLimit = new JLabel("Limit prowizji:");
+        lLimit = new JLabel("Limit prowizji:");
         lLimit.setSize(200, 30);
-        lLimit.setLocation(150, 385);
+        lLimit.setLocation(150, 420);
         lLimit.setFont(new Font("Arial", Font.PLAIN, 30));
         //lLimit.setHorizontalAlignment(SwingConstants.RIGHT);
         this.add(lLimit);
 
         limit = new JLabel();
         limit.setSize(300, 30);
-        limit.setLocation(350, 385);
+        limit.setLocation(350, 420);
         limit.setFont(new Font("Arial", Font.PLAIN, 25));
         this.add(limit);
 
         position = new JLabel("Pracownik: ");
         position.setSize(150, 30);
-        position.setLocation(330, 450);
+        position.setLocation(330, 460);
         position.setFont(new Font("Arial", Font.PLAIN, 15));
         //position.setHorizontalAlignment(SwingConstants.RIGHT);
         this.add(position);
