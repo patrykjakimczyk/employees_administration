@@ -22,29 +22,10 @@ public class Employee {
     protected String phoneNumber;
 
     public String toString() {
-        return "'" + pesel + "', " + "'" + name +
-                "', " + "'" + lastName + "', " + "'" + job + "', " +
-                "'" + team + "', " +
-                "'" + salary + "', " +
-                "'" + phoneNumber + "'";
-    }
-
-    public void removingView() {
-        System.out.println("Imię: " + this.name);
-        System.out.println("Nazwisko: " + this.lastName);
-        System.out.println("Stanowisko: " + this.job);
-        System.out.println("Zespół: " + this.job);
-        System.out.println("Wynagrodzenie: " + this.salary);
-        System.out.println("Telefon służbowy: " + this.phoneNumber);
-    }
-
-    public void listView() {
-        System.out.println("Identyfikator pesel: " + this.pesel);
-        System.out.println("Imię: " + this.name);
-        System.out.println("Nazwisko: " + this.lastName);
-        System.out.println("Stanowisko: " + this.job);
-        System.out.println("Zespół: " + this.job);
-        System.out.println("Wynagrodzenie: " + this.salary);
-        System.out.println("Telefon służbowy: " + this.phoneNumber);
+        return "'" + this.pesel + "', " + "'" + this.name +
+                "', " + "'" + this.lastName + "', " + "'" + this.job + "', " +
+                "'" + this.team + "', " +
+                "'" + this.salary + "', " +
+                "'" + this.phoneNumber + "'";
     }
 }

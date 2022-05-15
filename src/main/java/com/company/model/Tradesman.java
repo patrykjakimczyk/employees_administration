@@ -24,26 +24,10 @@ final public class Tradesman extends Employee {
     }
 
     public String toString() {
-        return "'" + pesel + "'" + "'" + name +
-                "'" + "'" + lastName + "'" + "'" + job + "'" +
-                "'" + team + "'" +
-                "'" + salary + "'" +
-                "'" + phoneNumber + "'" +
-                "'" + provision + "'" +
-                "'" + limitOfProvision + "'";
-    }
-
-    @Override
-    public void removingView() {
-        super.removingView();
-        System.out.println("Prowizja: " + this.provision);
-        System.out.println("Limit prowizji: " + this.limitOfProvision);
-    }
-
-    @Override
-    public void listView() {
-        super.listView();
-        System.out.println("Prowizja: " + this.provision);
-        System.out.println("Limit prowizji: " + this.limitOfProvision);
+        return "'" + this.pesel + "', '" + this.name +
+                "', '" + this.lastName + "', '" + this.job +
+                "', '" + this.team + "', '" + this.salary + "', '" +
+                this.phoneNumber + "', '" + this.provision + "', '" +
+                this.limitOfProvision + "'";
     }
 }

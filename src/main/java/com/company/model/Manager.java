@@ -23,46 +23,14 @@ final public class Manager extends Employee {
         this.bonusSalary = d;
         this.nrOfBussinessCard = nr;
     }
-//
-//    public BigDecimal getBonusSalary() {
-//        return this.bonusSalary;
-//    }
-//
-//    public void setBonusSalary(BigDecimal bonusSalary) {
-//        this.bonusSalary = bonusSalary;
-//    }
-//
-//    public String getNrOfBussinessCard() {
-//        return this.nrOfBussinessCard;
-//    }
-//
-//    public void setNrOfBussinessCard(String nrOfBussinessCard) {
-//        this.nrOfBussinessCard = nrOfBussinessCard;
-//    }
-
 
     @Override
     public String toString() {
-        return "'" + pesel + "'" + "'" + name +
-                "'" + "'" + lastName + "'" + "'" + job + "'" +
-                "'" + team + "'" +
-                "'" + salary + "'" +
-                "'" + phoneNumber + "'" +
-                "'" + bonusSalary + "'" +
-                "'" + nrOfBussinessCard + "'";
+        return "'" + this.pesel + "', '" + this.name +
+                "', '" + this.lastName + "', '" + this.job +
+                "', '" + this.team + "', '" + this.salary + "', '" +
+                this.phoneNumber + "', '" + this.bonusSalary + "', '" +
+                this.nrOfBussinessCard + "'";
     }
 
-    @Override
-    public void removingView() {
-        super.removingView();
-        System.out.println("Dodatek sluzbowy: " + this.bonusSalary);
-        System.out.println("Numer karty służbowej: " + this.nrOfBussinessCard);
-    }
-
-    @Override
-    public void listView() {
-        super.listView();
-        System.out.println("Dodatek sluzbowy: " + this.bonusSalary);
-        System.out.println("Numer karty służbowej: " + this.nrOfBussinessCard);
-    }
 }

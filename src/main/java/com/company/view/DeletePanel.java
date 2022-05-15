@@ -3,7 +3,8 @@ package com.company.view;
 import javax.swing.*;
 import java.awt.*;
 
-public class ListPanel extends JPanel {
+public class DeletePanel extends JPanel {
+
     JLabel pesel;
     JLabel name;
     JLabel lastName;
@@ -19,12 +20,11 @@ public class ListPanel extends JPanel {
     JLabel lProvision;
     JLabel limit;
     JLabel lLimit;
-    JLabel position;
     JButton returnBtn;
-    JButton prevBtn;
-    JButton nextBtn;
+    JButton deleteBtn;
+    JLabel status;
 
-    ListPanel() {
+    DeletePanel() {
         this.setLayout(null);
         this.setBackground(Color.white);
 
@@ -164,25 +164,22 @@ public class ListPanel extends JPanel {
         limit.setFont(new Font("Arial", Font.PLAIN, 25));
         this.add(limit);
 
-        position = new JLabel("Employee: ");
-        position.setSize(150, 30);
-        position.setLocation(330, 460);
-        position.setFont(new Font("Arial", Font.PLAIN, 15));
-        this.add(position);
-
         returnBtn = new JButton("Return");
-        returnBtn.setSize(80, 40);
+        returnBtn.setSize(150, 40);
         returnBtn.setLocation(150, 500);
         this.add(returnBtn);
 
-        prevBtn = new JButton("Previous");
-        prevBtn.setSize(100, 40);
-        prevBtn.setLocation(420, 500);
-        this.add(prevBtn);
+        deleteBtn = new JButton("Delete employee");
+        deleteBtn.setSize(150, 40);
+        deleteBtn.setLocation(460, 500);
+        this.add(deleteBtn);
 
-        nextBtn = new JButton("Next");
-        nextBtn.setSize(100, 40);
-        nextBtn.setLocation(550, 500);
-        this.add(nextBtn);
+        status = new JLabel();
+        status.setSize(400, 30);
+        status.setLocation(190, 460);
+        status.setFont(new Font("Arial", Font.PLAIN, 20));
+        status.setVisible(false);
+        status.setHorizontalAlignment(SwingConstants.CENTER);
+        this.add(status);
     }
 }

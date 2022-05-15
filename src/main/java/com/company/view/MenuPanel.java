@@ -6,7 +6,7 @@ import java.awt.*;
 public final class MenuPanel extends JPanel {
     final JButton list;
     final JButton addEmployee;
-    final JButton deleteEmployee;
+    final JButton searchEmployee;
     final JButton exit;
 
     MenuPanel() {
@@ -30,12 +30,12 @@ public final class MenuPanel extends JPanel {
         //addEmployee.setBorderPainted(false);
         this.add(addEmployee);
 
-        deleteEmployee = new JButton();
-        deleteEmployee.setBackground(Color.white);
-        deleteEmployee.setText("3. Delete employee");
-        deleteEmployee.setFocusable(false);
+        searchEmployee = new JButton();
+        searchEmployee.setBackground(Color.white);
+        searchEmployee.setText("3. Delete employee");
+        searchEmployee.setFocusable(false);
         //deleteEmployee.setBorderPainted(false);
-        this.add(deleteEmployee);
+        this.add(searchEmployee);
 
         exit = new JButton();
         exit.setBackground(Color.white);
