@@ -4,10 +4,10 @@ import javax.swing.*;
 import java.awt.*;
 
 public final class MenuPanel extends JPanel {
-    final JButton list;
-    final JButton addEmployee;
-    final JButton searchEmployee;
-    final JButton exit;
+    public final JButton list;
+    public final JButton addEmployee;
+    public final JButton searchEmployee;
+    public final JButton exit;
 
     MenuPanel() {
         this.setPreferredSize(new Dimension(250, 250));

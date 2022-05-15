@@ -1,5 +1,7 @@
 package com.company.view;
 
+import com.company.Controller.ButtonsController;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -14,7 +16,7 @@ public class MainFrame extends JFrame {
         this.getContentPane().setBackground(Color.white);
         MenuPanel menuPanel = new MenuPanel();
         this.add(menuPanel);
-        actionListeners.menuActionListeners(this, menuPanel);
+        ButtonsController.menuActionListeners(this, menuPanel);
         this.setVisible(true);
     }
 

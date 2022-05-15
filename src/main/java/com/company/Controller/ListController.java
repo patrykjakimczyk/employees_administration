@@ -1,25 +1,15 @@
-package com.company.model;
+package com.company.Controller;
 
-import com.company.db.DataBaseController;
+import com.company.model.Employee;
+import com.company.model.List;
+import com.company.model.Manager;
+import com.company.model.Tradesman;
 
 import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
-public class Data {
-
-    private static ArrayList<Employee> listOfEmployees = new ArrayList<>();
-
-    public static ArrayList<Employee> getListOfEmployees() {
-        if (listOfEmployees.size() == 0) {
-            addResultSetToList(DataBaseController.employeesListFromDB());
-        } else {
-            listOfEmployees.removeAll(listOfEmployees);
-            addResultSetToList(DataBaseController.employeesListFromDB());
-        }
-        return listOfEmployees;
-    }
+public class ListController {
 
     public static void addResultSetToList(ResultSet table) {
         try {
@@ -36,7 +26,7 @@ public class Data {
                             new BigDecimal(table.getString("provision")),
                             new BigDecimal(table.getString("limit_of_provision"))
                     );
-                    listOfEmployees.add(tm);
+                    List.getListOfEmployees().add(tm);
                 } else if (table.getString("job").equals("Manager")) {
                     Manager m = new Manager(
                             table.getString("pesel"),
@@ -49,7 +39,7 @@ public class Data {
                             new BigDecimal(table.getString("bonus_salary")),
                             table.getString("nr_of_card")
                     );
-                    listOfEmployees.add(m);
+                    List.getListOfEmployees().add(m);
                 } else {
                     Employee e = new Employee(
                             table.getString("pesel"),
@@ -60,7 +50,7 @@ public class Data {
                             new BigDecimal(table.getString("salary")),
                             table.getString("phone_nr")
                     );
-                    listOfEmployees.add(e);
+                    List.getListOfEmployees().add(e);
                 }
             }
         } catch (SQLException e) {
@@ -69,9 +59,9 @@ public class Data {
     }
 
     public static int isEmployeeExists(String pesel) {
-        getListOfEmployees();
+        List.getListOfEmployees();
         int index = 0;
-        for (Employee e : listOfEmployees) {
+        for (Employee e : List.getListOfEmployees()) {
             if (e.getPesel().equals(pesel)) {
                 return index;
             }

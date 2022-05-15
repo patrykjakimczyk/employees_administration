@@ -4,27 +4,27 @@ import javax.swing.*;
 import java.awt.*;
 
 public class ListPanel extends JPanel {
-    JLabel pesel;
-    JLabel name;
-    JLabel lastName;
-    JLabel job;
-    JLabel team;
-    JLabel salary;
-    JLabel phone;
-    JLabel bonus;
-    JLabel lBonus;
-    JLabel card;
-    JLabel lCard;
-    JLabel provision;
-    JLabel lProvision;
-    JLabel limit;
-    JLabel lLimit;
-    JLabel position;
-    JButton returnBtn;
-    JButton prevBtn;
-    JButton nextBtn;
+    public JLabel pesel;
+    public JLabel name;
+    public JLabel lastName;
+    public JLabel job;
+    public JLabel team;
+    public JLabel salary;
+    public JLabel phone;
+    public JLabel bonus;
+    public JLabel lBonus;
+    public JLabel card;
+    public JLabel lCard;
+    public JLabel provision;
+    public JLabel lProvision;
+    public JLabel limit;
+    public JLabel lLimit;
+    public JLabel position;
+    public JButton returnBtn;
+    public JButton prevBtn;
+    public JButton nextBtn;
 
-    ListPanel() {
+    public ListPanel() {
         this.setLayout(null);
         this.setBackground(Color.white);
 

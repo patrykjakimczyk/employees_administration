@@ -5,26 +5,26 @@ import java.awt.*;
 
 public class DeletePanel extends JPanel {
 
-    JLabel pesel;
-    JLabel name;
-    JLabel lastName;
-    JLabel job;
-    JLabel team;
-    JLabel salary;
-    JLabel phone;
-    JLabel bonus;
-    JLabel lBonus;
-    JLabel card;
-    JLabel lCard;
-    JLabel provision;
-    JLabel lProvision;
-    JLabel limit;
-    JLabel lLimit;
-    JButton returnBtn;
-    JButton deleteBtn;
-    JLabel status;
+    public JLabel pesel;
+    public JLabel name;
+    public JLabel lastName;
+    public JLabel job;
+    public JLabel team;
+    public JLabel salary;
+    public JLabel phone;
+    public JLabel bonus;
+    public JLabel lBonus;
+    public JLabel card;
+    public JLabel lCard;
+    public JLabel provision;
+    public JLabel lProvision;
+    public JLabel limit;
+    public JLabel lLimit;
+    public JButton returnBtn;
+    public JButton deleteBtn;
+    public JLabel status;
 
-    DeletePanel() {
+    public DeletePanel() {
         this.setLayout(null);
         this.setBackground(Color.white);
 

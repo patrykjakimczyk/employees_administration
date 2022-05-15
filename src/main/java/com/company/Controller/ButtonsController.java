@@ -1,15 +1,15 @@
-package com.company.view;
+package com.company.Controller;
 
-import com.company.Controller;
 import com.company.db.DataBaseController;
-import com.company.model.Data;
+import com.company.model.List;
+import com.company.view.*;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class actionListeners {
+public class ButtonsController {
     private static int index = 0;
     private static int size;
 
@@ -21,8 +21,8 @@ public class actionListeners {
                 if (source == menuPanel.list) {
                     ListPanel listPanel = new ListPanel();
                     listPanelActionListeners(frame, listPanel, menuPanel);
-                    size = Data.getListOfEmployees().size();
-                    View.displayEmployee(Data.getListOfEmployees().get(0), listPanel, index);
+                    size = List.getListOfEmployees().size();
+                    DisplayController.displayEmployee(List.getListOfEmployees().get(0), listPanel, index);
                     frame.changeView(listPanel);
                 } else if (source == menuPanel.addEmployee) {
                     AddPanel addPanel = new AddPanel();
@@ -53,13 +53,13 @@ public class actionListeners {
                 } else if (source == listPanel.nextBtn) {
                     if (index + 1 < size) {
                         index++;
-                        View.displayEmployee(Data.getListOfEmployees().get(index), listPanel, index);
+                        DisplayController.displayEmployee(List.getListOfEmployees().get(index), listPanel, index);
                         frame.changeView(listPanel);
                     }
                 } else if (source == listPanel.prevBtn) {
                     if (index - 1 >= 0) {
                         index--;
-                        View.displayEmployee(Data.getListOfEmployees().get(index), listPanel, index);
+                        DisplayController.displayEmployee(List.getListOfEmployees().get(index), listPanel, index);
                         frame.changeView(listPanel);
                     }
                 }
@@ -144,7 +144,7 @@ public class actionListeners {
                     chosen = choice.getSelectedItem();
                     if (chosen.equals(AddPanel.choices[0])) {
 
-                        if (Controller.addEmployeeWithValidation(pesel, name, lname, job, team, salary, phone, bonus, card)) {
+                        if (AddingAndValidationController.addEmployeeWithValidation(pesel, name, lname, job, team, salary, phone, bonus, card)) {
                             addPanel.status.setForeground(Color.green);
                             addPanel.status.setText("Employee has been successfully added");
                             addPanel.status.setVisible(true);
@@ -162,7 +162,7 @@ public class actionListeners {
                             addPanel.status.setVisible(true);
                         }
                     } else if (chosen.equals(AddPanel.choices[1])) {
-                        if (Controller.addEmployeeWithValidation(pesel, name, lname, job, salary, team, phone, provision, limit)) {
+                        if (AddingAndValidationController.addEmployeeWithValidation(pesel, name, lname, job, salary, team, phone, provision, limit)) {
                             addPanel.status.setForeground(Color.green);
                             addPanel.status.setText("Employee has been successfully added");
                             addPanel.status.setVisible(true);
@@ -180,7 +180,7 @@ public class actionListeners {
                             addPanel.status.setVisible(true);
                         }
                     } else {
-                        if (Controller.addEmployeeWithValidation(pesel, name, lname, job, team, salary, phone)) {
+                        if (AddingAndValidationController.addEmployeeWithValidation(pesel, name, lname, job, team, salary, phone)) {
                             addPanel.status.setForeground(Color.green);
                             addPanel.status.setText("Employee has been successfully added");
                             addPanel.status.setVisible(true);
@@ -212,7 +212,7 @@ public class actionListeners {
             public void actionPerformed(ActionEvent e) {
                 Object source = e.getSource();
                 if (source == searchPanel.searchBtn) {
-                    int index = Data.isEmployeeExists(searchPanel.search.getText());
+                    int index = ListController.isEmployeeExists(searchPanel.search.getText());
                     if (index == -1) {
                         searchPanel.status.setForeground(Color.red);
                         searchPanel.status.setText("Entered pesel doesn't match any of employees");
@@ -222,8 +222,8 @@ public class actionListeners {
                         DeletePanel deletePanel = new DeletePanel();
                         frame.changeView(deletePanel);
                         deleteActionListener(frame, searchPanel, deletePanel, index);
-                        System.out.println(Data.isEmployeeExists(searchPanel.search.getText()));
-                        View.deleteView(Data.getListOfEmployees().get(index), deletePanel);
+                        System.out.println(ListController.isEmployeeExists(searchPanel.search.getText()));
+                        DisplayController.deleteView(List.getListOfEmployees().get(index), deletePanel);
                     }
 
                 } else if (source == searchPanel.returnBtn) {
@@ -241,7 +241,7 @@ public class actionListeners {
             public void actionPerformed(ActionEvent e) {
                 Object source = e.getSource();
                 if (source == deletePanel.deleteBtn) {
-                    boolean isDeleted = DataBaseController.deleteEmployeeFromDB(Data.getListOfEmployees().get(index).getPesel());
+                    boolean isDeleted = DataBaseController.deleteEmployeeFromDB(List.getListOfEmployees().get(index).getPesel());
                     if (isDeleted == true) {
                         deletePanel.status.setForeground(Color.green);
                         deletePanel.status.setText("Employee has been successfully deleted");

@@ -1,13 +1,15 @@
-package com.company.view;
+package com.company.Controller;
 
-import com.company.model.Data;
 import com.company.model.Employee;
+import com.company.model.List;
 import com.company.model.Manager;
 import com.company.model.Tradesman;
+import com.company.view.DeletePanel;
+import com.company.view.ListPanel;
 
-public class View {
+public class DisplayController {
     public static void displayEmployee(Employee e, ListPanel listPanel, int index) {
-        int size = Data.getListOfEmployees().size();
+        int size = List.getListOfEmployees().size();
         index++;
         listPanel.position.setText("Employee: " + index + "/" + size);
 

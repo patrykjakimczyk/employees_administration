@@ -1,38 +1,33 @@
 package com.company.view;
 
+import com.company.Controller.ButtonsController;
+
 import javax.swing.*;
 import java.awt.*;
 
 public class AddPanel extends JPanel {
     public static String[] choices = {"Manager", "Tradesman", "Other job title"};
-    JTextField pesel;
-    JComboBox choice;
-    JLabel lPesel;
-    JLabel lName;
-    JTextField name;
-    JLabel lLastName;
-    JTextField lastName;
-    JLabel lJob;
-    JTextField job;
-    JLabel lTeam;
-    JTextField team;
-    JLabel lSalary;
-    JTextField salary;
-    JLabel lPhone;
-    JTextField phone;
-    JLabel lBonus;
-    JTextField bonus;
-    JLabel lCard;
-    JTextField card;
-    JLabel lProvision;
-    JTextField provision;
-    JLabel lLimit;
-    JTextField limit;
-    JLabel status;
-    JButton returnBtn;
-    JButton addBtn;
+    public JComboBox choice;
+    public JTextField pesel;
+    public JTextField name;
+    public JTextField lastName;
+    public JTextField team;
+    public JTextField salary;
+    public JTextField phone;
+    public JTextField job;
+    public JLabel lBonus;
+    public JTextField bonus;
+    public JLabel lCard;
+    public JTextField card;
+    public JLabel lProvision;
+    public JTextField provision;
+    public JLabel lLimit;
+    public JTextField limit;
+    public JLabel status;
+    public JButton returnBtn;
+    public JButton addBtn;
 
-    AddPanel() {
+    public AddPanel() {
         this.setLayout(null);
         this.setBackground(Color.white);
 
@@ -42,7 +37,7 @@ public class AddPanel extends JPanel {
         choice.setSelectedItem(choices[2]);
         this.add(choice);
 
-        lPesel = new JLabel("Pesel: ");
+        JLabel lPesel = new JLabel("Pesel: ");
         lPesel.setSize(200, 30);
         lPesel.setLocation(120, 85);
         lPesel.setFont(new Font("Arial", Font.PLAIN, 30));
@@ -54,7 +49,7 @@ public class AddPanel extends JPanel {
         pesel.setFont(new Font("Arial", Font.PLAIN, 25));
         this.add(pesel);
 
-        lName = new JLabel("Name: ");
+        JLabel lName = new JLabel("Name: ");
         lName.setSize(200, 30);
         lName.setLocation(120, 130);
         lName.setFont(new Font("Arial", Font.PLAIN, 30));
@@ -66,7 +61,7 @@ public class AddPanel extends JPanel {
         name.setFont(new Font("Arial", Font.PLAIN, 25));
         this.add(name);
 
-        lLastName = new JLabel("Last name: ");
+        JLabel lLastName = new JLabel("Last name: ");
         lLastName.setSize(200, 30);
         lLastName.setLocation(120, 175);
         lLastName.setFont(new Font("Arial", Font.PLAIN, 30));
@@ -78,7 +73,7 @@ public class AddPanel extends JPanel {
         lastName.setFont(new Font("Arial", Font.PLAIN, 25));
         this.add(lastName);
 
-        lJob = new JLabel("Job title: ");
+        JLabel lJob = new JLabel("Job title: ");
         lJob.setSize(200, 30);
         lJob.setLocation(120, 220);
         lJob.setFont(new Font("Arial", Font.PLAIN, 30));
@@ -90,7 +85,7 @@ public class AddPanel extends JPanel {
         job.setFont(new Font("Arial", Font.PLAIN, 25));
         this.add(job);
 
-        lTeam = new JLabel("Team: ");
+        JLabel lTeam = new JLabel("Team: ");
         lTeam.setSize(200, 30);
         lTeam.setLocation(120, 265);
         lTeam.setFont(new Font("Arial", Font.PLAIN, 30));
@@ -102,7 +97,7 @@ public class AddPanel extends JPanel {
         team.setFont(new Font("Arial", Font.PLAIN, 25));
         this.add(team);
 
-        lSalary = new JLabel("Salary: ");
+        JLabel lSalary = new JLabel("Salary: ");
         lSalary.setSize(200, 30);
         lSalary.setLocation(120, 310);
         lSalary.setFont(new Font("Arial", Font.PLAIN, 30));
@@ -114,7 +109,7 @@ public class AddPanel extends JPanel {
         salary.setFont(new Font("Arial", Font.PLAIN, 25));
         this.add(salary);
 
-        lPhone = new JLabel("Phone Nr:");
+        JLabel lPhone = new JLabel("Phone Nr:");
         lPhone.setSize(200, 30);
         lPhone.setLocation(120, 355);
         lPhone.setFont(new Font("Arial", Font.PLAIN, 30));
@@ -200,6 +195,6 @@ public class AddPanel extends JPanel {
         addBtn.setLocation(450, 500);
         this.add(addBtn);
 
-        actionListeners.choiceActionListener(this, choice, addBtn);
+        ButtonsController.choiceActionListener(this, choice, addBtn);
     }
 }

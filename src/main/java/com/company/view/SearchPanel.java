@@ -4,12 +4,12 @@ import javax.swing.*;
 import java.awt.*;
 
 public class SearchPanel extends JPanel {
-    JTextField search;
-    JButton returnBtn;
-    JButton searchBtn;
-    JLabel status;
+    public JTextField search;
+    public JButton returnBtn;
+    public JButton searchBtn;
+    public JLabel status;
 
-    SearchPanel() {
+    public SearchPanel() {
         this.setLayout(null);
         this.setBackground(Color.white);
 

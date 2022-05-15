@@ -1,4 +1,4 @@
-package com.company;
+package com.company.Controller;
 
 import com.company.db.DataBaseController;
 import com.company.model.Employee;
@@ -9,7 +9,7 @@ import com.company.view.AddPanel;
 import java.math.BigDecimal;
 import java.util.Scanner;
 
-public class Controller {
+public class AddingAndValidationController {
     static Scanner in = new Scanner(System.in);
 
     private static boolean peselCheck(char[] p) {
