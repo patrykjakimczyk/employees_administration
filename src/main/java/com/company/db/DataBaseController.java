@@ -8,8 +8,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public final class DataBaseController {
+    private static DataBaseConnection dbConnection = new DataBaseConnection();
+
     public static boolean addToDB(Object employee) {
-        DataBaseConnection dbConnection = new DataBaseConnection();
         String query = "";
         try {
             Statement statement = dbConnection.getConnection().createStatement();
@@ -38,7 +39,6 @@ public final class DataBaseController {
     }
 
     public static ResultSet employeesListFromDB() {
-        DataBaseConnection dbConnection = new DataBaseConnection();
         String query = "";
         ResultSet result;
 
@@ -54,7 +54,6 @@ public final class DataBaseController {
     }
 
     public static boolean deleteEmployeeFromDB(String pesel) {
-        DataBaseConnection dbConnection = new DataBaseConnection();
         String query = "DELETE FROM employees WHERE pesel = '" + pesel + "';";
 
         try {

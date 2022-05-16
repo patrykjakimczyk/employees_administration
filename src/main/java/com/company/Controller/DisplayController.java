@@ -9,6 +9,7 @@ import com.company.view.ListPanel;
 
 public class DisplayController {
     public static void displayEmployee(Employee e, ListPanel listPanel, int index) {
+        ListController.updateListOfEmployees();
         int size = List.getListOfEmployees().size();
         index++;
         listPanel.position.setText("Employee: " + index + "/" + size);

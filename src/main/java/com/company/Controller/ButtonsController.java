@@ -21,6 +21,7 @@ public class ButtonsController {
                 if (source == menuPanel.list) {
                     ListPanel listPanel = new ListPanel();
                     listPanelActionListeners(frame, listPanel, menuPanel);
+                    ListController.updateListOfEmployees();
                     size = List.getListOfEmployees().size();
                     DisplayController.displayEmployee(List.getListOfEmployees().get(0), listPanel, index);
                     frame.changeView(listPanel);
@@ -51,6 +52,7 @@ public class ButtonsController {
                 if (source == listPanel.returnBtn) {
                     frame.changeView(menuPanel);
                 } else if (source == listPanel.nextBtn) {
+                    ListController.updateListOfEmployees();
                     if (index + 1 < size) {
                         index++;
                         DisplayController.displayEmployee(List.getListOfEmployees().get(index), listPanel, index);
@@ -212,6 +214,7 @@ public class ButtonsController {
             public void actionPerformed(ActionEvent e) {
                 Object source = e.getSource();
                 if (source == searchPanel.searchBtn) {
+                    ListController.updateListOfEmployees();
                     int index = ListController.isEmployeeExists(searchPanel.search.getText());
                     if (index == -1) {
                         searchPanel.status.setForeground(Color.red);
@@ -241,6 +244,7 @@ public class ButtonsController {
             public void actionPerformed(ActionEvent e) {
                 Object source = e.getSource();
                 if (source == deletePanel.deleteBtn) {
+                    ListController.updateListOfEmployees();
                     boolean isDeleted = DataBaseController.deleteEmployeeFromDB(List.getListOfEmployees().get(index).getPesel());
                     if (isDeleted == true) {
                         deletePanel.status.setForeground(Color.green);

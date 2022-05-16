@@ -1,5 +1,6 @@
 package com.company.Controller;
 
+import com.company.db.DataBaseController;
 import com.company.model.Employee;
 import com.company.model.List;
 import com.company.model.Manager;
@@ -8,8 +9,19 @@ import com.company.model.Tradesman;
 import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class ListController {
+
+    public static void updateListOfEmployees() {
+        ArrayList<Employee> list = List.getListOfEmployees();
+        if (list.size() == 0) {
+            addResultSetToList(DataBaseController.employeesListFromDB());
+        } else {
+            list.removeAll(list);
+            addResultSetToList(DataBaseController.employeesListFromDB());
+        }
+    }
 
     public static void addResultSetToList(ResultSet table) {
         try {

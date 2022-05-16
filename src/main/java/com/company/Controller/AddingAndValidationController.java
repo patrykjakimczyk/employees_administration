@@ -93,7 +93,6 @@ public class AddingAndValidationController {
         }
 
         Employee e = new Employee(pesel, name, lName, job, Integer.parseInt(team), new BigDecimal(salary), phone);
-        //Data.getListOfEmployees().add(e);
         if (DataBaseController.addToDB(e)) {
             return true;
         } else {
