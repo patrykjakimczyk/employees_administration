@@ -68,7 +68,7 @@ Package with all Swing panels and frames, that create GUI.
 3. In pgAdmin main window you have to create new database like this:
    ![](1.png)
 4. If you created a database, right click on it and choose this option:
-   ![1](2.png)
+   ![](2.png)
 5. Now you need to choose "company.sql" file which is located in the main package of this project and click "Restore"
 6. After that your database is ready, now you have to change those values if needed:
 
