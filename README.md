@@ -9,7 +9,7 @@ Main window of the application has 4 options to choose:
 
 1. List of Employees
 2. Add an employee
-3. Search and edit/delete an employee **(editing in progress)
+3. Search and edit/delete an employee **(editing in progress)**
 4. Exit
 
 ### 1. List of employees
