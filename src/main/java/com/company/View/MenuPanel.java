@@ -22,14 +22,14 @@ public final class MenuPanel extends JPanel {
         this.add(list);
 
         addEmployee = new JButton();
-        addEmployee.setText("2. Add a employee");
+        addEmployee.setText("2. Add an employee");
         addEmployee.setFocusable(false);
         addEmployee.setBackground(Color.white);
         this.add(addEmployee);
 
         searchEmployee = new JButton();
         searchEmployee.setBackground(Color.white);
-        searchEmployee.setText("3. Search and manage employee");
+        searchEmployee.setText("3. Search and edit/delete employee");
         searchEmployee.setFocusable(false);
         this.add(searchEmployee);
 
