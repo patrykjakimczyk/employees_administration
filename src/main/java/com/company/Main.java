@@ -1,7 +1,7 @@
 package com.company;
 
-import com.company.db.DataBaseConnection;
-import com.company.view.MainFrame;
+import com.company.DB.DataBaseConnection;
+import com.company.View.MainFrame;
 
 public class Main {
 

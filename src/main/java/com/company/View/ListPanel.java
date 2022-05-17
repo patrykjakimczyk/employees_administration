@@ -1,4 +1,4 @@
-package com.company.view;
+package com.company.View;
 
 import javax.swing.*;
 import java.awt.*;

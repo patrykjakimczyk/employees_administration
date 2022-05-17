@@ -1,10 +1,10 @@
 package com.company.Controller;
 
-import com.company.db.DataBaseController;
-import com.company.model.Employee;
-import com.company.model.List;
-import com.company.model.Manager;
-import com.company.model.Tradesman;
+import com.company.DB.DataBaseController;
+import com.company.Model.Employee;
+import com.company.Model.List;
+import com.company.Model.Manager;
+import com.company.Model.Tradesman;
 
 import java.math.BigDecimal;
 import java.sql.ResultSet;

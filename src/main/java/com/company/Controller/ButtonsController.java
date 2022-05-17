@@ -1,8 +1,8 @@
 package com.company.Controller;
 
-import com.company.db.DataBaseController;
-import com.company.model.List;
-import com.company.view.*;
+import com.company.DB.DataBaseController;
+import com.company.Model.List;
+import com.company.View.*;
 
 import javax.swing.*;
 import java.awt.*;

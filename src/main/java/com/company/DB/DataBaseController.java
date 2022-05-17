@@ -1,7 +1,7 @@
-package com.company.db;
+package com.company.DB;
 
-import com.company.model.Manager;
-import com.company.model.Tradesman;
+import com.company.Model.Manager;
+import com.company.Model.Tradesman;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

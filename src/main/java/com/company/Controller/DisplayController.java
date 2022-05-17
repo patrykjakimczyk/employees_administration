@@ -1,11 +1,11 @@
 package com.company.Controller;
 
-import com.company.model.Employee;
-import com.company.model.List;
-import com.company.model.Manager;
-import com.company.model.Tradesman;
-import com.company.view.DeletePanel;
-import com.company.view.ListPanel;
+import com.company.Model.Employee;
+import com.company.Model.List;
+import com.company.Model.Manager;
+import com.company.Model.Tradesman;
+import com.company.View.DeletePanel;
+import com.company.View.ListPanel;
 
 public class DisplayController {
     public static void displayEmployee(Employee e, ListPanel listPanel, int index) {
