@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 
 @Getter
 @Setter
-public final class Tradesman extends Employee implements Inserting {
+public final class Tradesman extends Employee implements Statements {
     private BigDecimal provision;
     private BigDecimal limitOfProvision;
 
@@ -26,16 +26,29 @@ public final class Tradesman extends Employee implements Inserting {
     @Override
     public String InsertStatement() {
         String statement = String.format("INSERT INTO employees " +
-                "(pesel, first_name, last_name, job, team, salary, phone_nr, provision, limit_of_provision) VALUES " +
-                "(%s);", this);
+                        "(pesel, first_name, last_name, job, team, salary, phone_nr, provision, limit_of_provision) VALUES" +
+                        "('%s', '%s','%s','%s','%s','%s','%s');", this.pesel, this.name, this.lastName,
+                this.job, this.team, this.salary, this.phoneNumber, this.provision, this.limitOfProvision);
         return statement;
     }
 
-    public String toString() {
-        return "'" + this.pesel + "', '" + this.name +
-                "', '" + this.lastName + "', '" + this.job +
-                "', '" + this.team + "', '" + this.salary + "', '" +
-                this.phoneNumber + "', '" + this.provision + "', '" +
-                this.limitOfProvision + "'";
+    @Override
+    public String UpdateStatement() {
+        String statement = String.format("UPDATE employees" +
+                        "SET pesel='%s', first_name='%s', last_name='%s', job='%s'," +
+                        "team='%s', salary='%s', phone_nr='%s', provision='%s', limit_of_provision='%s'" +
+                        "WHERE pesel='%s';",
+                this.pesel, this.name, this.lastName,
+                this.job, this.team, this.salary, this.phoneNumber, this.provision, this.limitOfProvision, this.pesel);
+        return statement;
     }
+
+
+//    public String toString() {
+//        return "'" + this.pesel + "', '" + this.name +
+//                "', '" + this.lastName + "', '" + this.job +
+//                "', '" + this.team + "', '" + this.salary + "', '" +
+//                this.phoneNumber + "', '" + this.provision + "', '" +
+//                this.limitOfProvision + "'";
+//    }
 }
