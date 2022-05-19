@@ -3,7 +3,7 @@ package com.company.View;
 import javax.swing.*;
 import java.awt.*;
 
-public class ListPanel extends JPanel {
+public final class ListPanel extends JPanel {
     public JLabel pesel;
     public JLabel name;
     public JLabel lastName;

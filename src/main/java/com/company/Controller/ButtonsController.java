@@ -9,7 +9,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class ButtonsController {
+public final class ButtonsController {
     private static int index = 0;
     private static int size;
 
@@ -222,7 +222,7 @@ public class ButtonsController {
                         searchPanel.status.setVisible(true);
                     } else {
                         searchPanel.status.setText("");
-                        DeletePanel deletePanel = new DeletePanel();
+                        EditPanel deletePanel = new EditPanel();
                         frame.changeView(deletePanel);
                         deleteActionListener(frame, searchPanel, deletePanel, index);
                         System.out.println(ListController.isEmployeeExists(searchPanel.search.getText()));
@@ -238,7 +238,7 @@ public class ButtonsController {
         searchPanel.returnBtn.addActionListener(actionListener);
     }
 
-    public static void deleteActionListener(MainFrame frame, SearchPanel searchPanel, DeletePanel deletePanel, int index) {
+    public static void deleteActionListener(MainFrame frame, SearchPanel searchPanel, EditPanel deletePanel, int index) {
         ActionListener actionListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

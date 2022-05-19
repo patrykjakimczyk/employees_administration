@@ -3,7 +3,7 @@ package com.company.View;
 import javax.swing.*;
 import java.awt.*;
 
-public class SearchPanel extends JPanel {
+public final class SearchPanel extends JPanel {
     public JTextField search;
     public JButton returnBtn;
     public JButton searchBtn;

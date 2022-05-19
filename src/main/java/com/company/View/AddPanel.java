@@ -5,7 +5,7 @@ import com.company.Controller.ButtonsController;
 import javax.swing.*;
 import java.awt.*;
 
-public class AddPanel extends JPanel {
+public final class AddPanel extends JPanel {
     public static String[] choices = {"Manager", "Tradesman", "Other job title"};
     public JComboBox choice;
     public JTextField pesel;

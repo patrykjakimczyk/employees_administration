@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 
 @Getter
 @Setter
-final public class Manager extends Employee {
+public final class Manager extends Employee implements Inserting {
     public final static int MAX_CARD_LEN = 16;
     private BigDecimal bonusSalary;
     private String nrOfBussinessCard;
@@ -22,6 +22,14 @@ final public class Manager extends Employee {
         super(pesel, name, lastName, job, team, salary, phoneNumber);
         this.bonusSalary = d;
         this.nrOfBussinessCard = nr;
+    }
+
+    @Override
+    public String InsertStatement() {
+        String statement = String.format("INSERT INTO employees " +
+                "(pesel, first_name, last_name, job, team, salary, phone_nr, bonus_salary, nr_of_card) VALUES " +
+                "(%s);", this);
+        return statement;
     }
 
     @Override

@@ -11,7 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class ListController {
+public final class ListController {
 
     public static void updateListOfEmployees() {
         ArrayList<Employee> list = List.getListOfEmployees();

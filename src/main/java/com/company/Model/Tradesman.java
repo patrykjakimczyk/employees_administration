@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 
 @Getter
 @Setter
-final public class Tradesman extends Employee {
+public final class Tradesman extends Employee implements Inserting {
     private BigDecimal provision;
     private BigDecimal limitOfProvision;
 
@@ -21,6 +21,14 @@ final public class Tradesman extends Employee {
         super(pesel, name, lastName, job, team, salary, phoneNumber);
         this.provision = provision;
         this.limitOfProvision = limitOfProvision;
+    }
+
+    @Override
+    public String InsertStatement() {
+        String statement = String.format("INSERT INTO employees " +
+                "(pesel, first_name, last_name, job, team, salary, phone_nr, provision, limit_of_provision) VALUES " +
+                "(%s);", this);
+        return statement;
     }
 
     public String toString() {

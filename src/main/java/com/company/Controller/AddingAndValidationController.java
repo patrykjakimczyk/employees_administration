@@ -9,7 +9,7 @@ import com.company.View.AddPanel;
 import java.math.BigDecimal;
 import java.util.Scanner;
 
-public class AddingAndValidationController {
+public final class AddingAndValidationController {
     static Scanner in = new Scanner(System.in);
 
     private static boolean peselCheck(char[] p) {

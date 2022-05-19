@@ -3,7 +3,7 @@ package com.company.View;
 import javax.swing.*;
 import java.awt.*;
 
-public class DeletePanel extends JPanel {
+public final class EditPanel extends JPanel {
 
     public JLabel pesel;
     public JLabel name;
@@ -24,7 +24,7 @@ public class DeletePanel extends JPanel {
     public JButton deleteBtn;
     public JLabel status;
 
-    public DeletePanel() {
+    public EditPanel() {
         this.setLayout(null);
         this.setBackground(Color.white);
 

@@ -4,10 +4,10 @@ import com.company.Model.Employee;
 import com.company.Model.List;
 import com.company.Model.Manager;
 import com.company.Model.Tradesman;
-import com.company.View.DeletePanel;
+import com.company.View.EditPanel;
 import com.company.View.ListPanel;
 
-public class DisplayController {
+public final class DisplayController {
     public static void displayEmployee(Employee e, ListPanel listPanel, int index) {
         ListController.updateListOfEmployees();
         int size = List.getListOfEmployees().size();
@@ -58,7 +58,7 @@ public class DisplayController {
         }
     }
 
-    public static void deleteView(Employee e, DeletePanel deletePanel) {
+    public static void deleteView(Employee e, EditPanel deletePanel) {
 
         deletePanel.pesel.setText(e.getPesel());
         deletePanel.name.setText(e.getName());
