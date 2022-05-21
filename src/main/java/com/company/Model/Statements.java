@@ -2,7 +2,7 @@ package com.company.Model;
 
 public
 interface Statements {
-    public String InsertStatement();
+    public String insertStatement();
 
-    public String UpdateStatement();
+    public String updateStatement();
 }

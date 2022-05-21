@@ -22,7 +22,7 @@ public class Employee implements Statements {
     protected String phoneNumber;
 
     @Override
-    public String InsertStatement() {
+    public String insertStatement() {
         String statement = String.format("INSERT INTO employees " +
                         "(pesel, first_name, last_name, job, team, salary, phone_nr) VALUES" +
                         "('%s', '%s','%s','%s','%s','%s','%s');", this.pesel, this.name, this.lastName,
@@ -31,13 +31,23 @@ public class Employee implements Statements {
     }
 
     @Override
-    public String UpdateStatement() {
-        String statement = String.format("UPDATE employees" +
-                        "SET pesel='%s', first_name='%s', last_name='%s', job='%s'," +
-                        "team='%s', salary='%s', phone_nr='%s'" +
-                        "WHERE pesel='%s';",
+    public String updateStatement() {
+        String statement = String.format("UPDATE employees " +
+                        "SET pesel='%s', first_name='%s', last_name='%s', job='%s', " +
+                        "team='%s', salary='%s', phone_nr='%s' ",
                 this.pesel, this.name, this.lastName,
-                this.job, this.team, this.salary, this.phoneNumber, this.pesel);
+                this.job, this.team, this.salary, this.phoneNumber);
         return statement;
+    }
+
+    public void updateEmployee(String pesel, String name, String lName, String job, int team,
+                               BigDecimal salary, String phone) {
+        this.pesel = pesel;
+        this.name = name;
+        this.lastName = lName;
+        this.job = job;
+        this.team = team;
+        this.salary = salary;
+        this.phoneNumber = phone;
     }
 }

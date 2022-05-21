@@ -146,7 +146,8 @@ public final class ButtonsController {
                     chosen = choice.getSelectedItem();
                     if (chosen.equals(AddPanel.choices[0])) {
 
-                        if (AddingAndValidationController.addEmployeeWithValidation(pesel, name, lname, job, team, salary, phone, bonus, card)) {
+                        if (AddingAndValidationController.employeeValidation(pesel, name, lname, job, team,
+                                salary, phone, bonus, card, false)) {
                             addPanel.status.setForeground(Color.green);
                             addPanel.status.setText("Employee has been successfully added");
                             addPanel.status.setVisible(true);
@@ -164,7 +165,8 @@ public final class ButtonsController {
                             addPanel.status.setVisible(true);
                         }
                     } else if (chosen.equals(AddPanel.choices[1])) {
-                        if (AddingAndValidationController.addEmployeeWithValidation(pesel, name, lname, job, salary, team, phone, provision, limit)) {
+                        if (AddingAndValidationController.employeeValidation(pesel, name, lname, job, salary, team,
+                                phone, provision, limit, false)) {
                             addPanel.status.setForeground(Color.green);
                             addPanel.status.setText("Employee has been successfully added");
                             addPanel.status.setVisible(true);
@@ -182,7 +184,8 @@ public final class ButtonsController {
                             addPanel.status.setVisible(true);
                         }
                     } else {
-                        if (AddingAndValidationController.addEmployeeWithValidation(pesel, name, lname, job, team, salary, phone)) {
+                        if (AddingAndValidationController.employeeValidation(pesel, name, lname, job, team,
+                                salary, phone, false)) {
                             addPanel.status.setForeground(Color.green);
                             addPanel.status.setText("Employee has been successfully added");
                             addPanel.status.setVisible(true);
@@ -222,11 +225,10 @@ public final class ButtonsController {
                         searchPanel.status.setVisible(true);
                     } else {
                         searchPanel.status.setText("");
-                        EditPanel deletePanel = new EditPanel();
-                        frame.changeView(deletePanel);
-                        deleteActionListener(frame, searchPanel, deletePanel, index);
-                        System.out.println(ListController.isEmployeeExists(searchPanel.search.getText()));
-                        DisplayController.deleteView(List.getListOfEmployees().get(index), deletePanel);
+                        EditPanel editPanel = new EditPanel();
+                        frame.changeView(editPanel);
+                        editActionListener(frame, searchPanel, editPanel, index);
+                        DisplayController.editView(List.getListOfEmployees().get(index), editPanel);
                     }
 
                 } else if (source == searchPanel.returnBtn) {
@@ -238,31 +240,104 @@ public final class ButtonsController {
         searchPanel.returnBtn.addActionListener(actionListener);
     }
 
-    public static void deleteActionListener(MainFrame frame, SearchPanel searchPanel, EditPanel deletePanel, int index) {
+    public static void editActionListener(MainFrame frame, SearchPanel searchPanel, EditPanel editPanel, int index) {
         ActionListener actionListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Object source = e.getSource();
-                if (source == deletePanel.deleteBtn) {
+                if (source == editPanel.deleteBtn) {
                     ListController.updateListOfEmployees();
                     boolean isDeleted = DataBaseController.deleteEmployeeFromDB(List.getListOfEmployees().get(index).getPesel());
                     if (isDeleted == true) {
-                        deletePanel.status.setForeground(Color.green);
-                        deletePanel.status.setText("Employee has been successfully deleted");
-                        deletePanel.status.setVisible(true);
+                        editPanel.status.setForeground(Color.green);
+                        editPanel.status.setText("Employee has been successfully deleted");
+                        editPanel.status.setVisible(true);
                     } else {
-                        deletePanel.status.setForeground(Color.red);
-                        deletePanel.status.setText("Employee hasn't been deleted");
-                        deletePanel.status.setVisible(true);
+                        editPanel.status.setForeground(Color.red);
+                        editPanel.status.setText("Employee hasn't been deleted");
+                        editPanel.status.setVisible(true);
                     }
-                    deletePanel.deleteBtn.setEnabled(false);
-                } else if (source == deletePanel.returnBtn) {
+                    editPanel.deleteBtn.setEnabled(false);
+                } else if (source == editPanel.updateBtn) {
+                    UpdatePanel updatePanel = new UpdatePanel();
+                    frame.changeView(updatePanel);
+                    updateActionListener(frame, editPanel, updatePanel, index);
+                    DisplayController.updateView(List.getListOfEmployees().get(index), updatePanel);
+                    searchPanel.status.setVisible(false);
+                } else if (source == editPanel.returnBtn) {
                     frame.changeView(searchPanel);
                     searchPanel.status.setVisible(false);
                 }
             }
         };
-        deletePanel.returnBtn.addActionListener(actionListener);
-        deletePanel.deleteBtn.addActionListener(actionListener);
+        editPanel.returnBtn.addActionListener(actionListener);
+        editPanel.updateBtn.addActionListener(actionListener);
+        editPanel.deleteBtn.addActionListener(actionListener);
+    }
+
+    public static void updateActionListener(MainFrame frame, EditPanel editPanel, UpdatePanel updatePanel, int index) {
+        ActionListener actionListener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Object source = e.getSource();
+                if (source == updatePanel.updateBtn) {
+                    String pesel = updatePanel.pesel.getText();
+                    String name = updatePanel.name.getText();
+                    String lname = updatePanel.lastName.getText();
+                    String job = updatePanel.job.getText();
+                    String team = updatePanel.team.getText();
+                    String salary = updatePanel.salary.getText();
+                    String phone = updatePanel.phone.getText();
+                    String bonus = updatePanel.bonus.getText();
+                    String card = updatePanel.card.getText();
+                    String provision = updatePanel.provision.getText();
+                    String limit = updatePanel.limit.getText();
+                    if (job.equals("Manager")) {
+                        if (AddingAndValidationController.employeeValidation(pesel, name, lname, job, team,
+                                salary, phone, bonus, card, true)) {
+                            updatePanel.status.setForeground(Color.green);
+                            updatePanel.status.setText("Employee has been successfully updated");
+                            updatePanel.status.setVisible(true);
+                        } else {
+                            updatePanel.status.setForeground(Color.red);
+                            updatePanel.status.setText("Employee hasn't been updated(Entered data are incorrect)");
+                            updatePanel.status.setVisible(true);
+
+                        }
+
+                    } else if (job.equals("Tradesman")) {
+                        if (AddingAndValidationController.employeeValidation(pesel, name, lname, job, team,
+                                salary, phone, provision, limit, true)) {
+                            updatePanel.status.setForeground(Color.green);
+                            updatePanel.status.setText("Employee has been successfully updated");
+                            updatePanel.status.setVisible(true);
+                        } else {
+                            updatePanel.status.setForeground(Color.red);
+                            updatePanel.status.setText("Employee hasn't been updated(Entered data are incorrect)");
+                            updatePanel.status.setVisible(true);
+
+                        }
+                    } else {
+                        if (AddingAndValidationController.employeeValidation(pesel, name, lname, job, team,
+                                salary, phone, true)) {
+                            updatePanel.status.setForeground(Color.green);
+                            updatePanel.status.setText("Employee has been successfully updated");
+                            updatePanel.status.setVisible(true);
+                        } else {
+                            updatePanel.status.setForeground(Color.red);
+                            updatePanel.status.setText("Employee hasn't been updated(Entered data are incorrect)");
+                            updatePanel.status.setVisible(true);
+
+                        }
+                    }
+                } else if (source == updatePanel.returnBtn) {
+                    DisplayController.editView(List.getListOfEmployees().get(index), editPanel);
+                    frame.changeView(editPanel);
+                    editPanel.status.setVisible(false);
+                }
+            }
+        };
+        updatePanel.updateBtn.addActionListener(actionListener);
+        updatePanel.returnBtn.addActionListener(actionListener);
     }
 }

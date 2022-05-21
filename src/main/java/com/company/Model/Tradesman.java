@@ -24,7 +24,7 @@ public final class Tradesman extends Employee implements Statements {
     }
 
     @Override
-    public String InsertStatement() {
+    public String insertStatement() {
         String statement = String.format("INSERT INTO employees " +
                         "(pesel, first_name, last_name, job, team, salary, phone_nr, provision, limit_of_provision) VALUES" +
                         "('%s', '%s','%s','%s','%s','%s','%s');", this.pesel, this.name, this.lastName,
@@ -33,22 +33,20 @@ public final class Tradesman extends Employee implements Statements {
     }
 
     @Override
-    public String UpdateStatement() {
+    public String updateStatement() {
         String statement = String.format("UPDATE employees" +
                         "SET pesel='%s', first_name='%s', last_name='%s', job='%s'," +
-                        "team='%s', salary='%s', phone_nr='%s', provision='%s', limit_of_provision='%s'" +
-                        "WHERE pesel='%s';",
+                        "team='%s', salary='%s', phone_nr='%s', provision='%s', limit_of_provision='%s'",
                 this.pesel, this.name, this.lastName,
                 this.job, this.team, this.salary, this.phoneNumber, this.provision, this.limitOfProvision, this.pesel);
         return statement;
     }
 
-
-//    public String toString() {
-//        return "'" + this.pesel + "', '" + this.name +
-//                "', '" + this.lastName + "', '" + this.job +
-//                "', '" + this.team + "', '" + this.salary + "', '" +
-//                this.phoneNumber + "', '" + this.provision + "', '" +
-//                this.limitOfProvision + "'";
-//    }
+    public void updateEmployee(String pesel, String name, String lName, String job, int team,
+                               BigDecimal salary, String phone, BigDecimal provision,
+                               BigDecimal limit) {
+        super.updateEmployee(pesel, name, lName, job, team, salary, phone);
+        this.provision = provision;
+        this.limitOfProvision = limit;
+    }
 }
