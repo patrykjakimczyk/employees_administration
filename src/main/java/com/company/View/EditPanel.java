@@ -21,6 +21,7 @@ public final class EditPanel extends JPanel {
     public JLabel limit;
     public JLabel lLimit;
     public JButton returnBtn;
+    public JButton updateBtn;
     public JButton deleteBtn;
     public JLabel status;
 
@@ -166,12 +167,17 @@ public final class EditPanel extends JPanel {
 
         returnBtn = new JButton("Return");
         returnBtn.setSize(150, 40);
-        returnBtn.setLocation(150, 500);
+        returnBtn.setLocation(130, 500);
         this.add(returnBtn);
+
+        updateBtn = new JButton("Update");
+        updateBtn.setSize(150, 40);
+        updateBtn.setLocation(310, 500);
+        this.add(updateBtn);
 
         deleteBtn = new JButton("Delete employee");
         deleteBtn.setSize(150, 40);
-        deleteBtn.setLocation(460, 500);
+        deleteBtn.setLocation(490, 500);
         this.add(deleteBtn);
 
         status = new JLabel();

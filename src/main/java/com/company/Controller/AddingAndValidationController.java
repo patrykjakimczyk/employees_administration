@@ -2,6 +2,7 @@ package com.company.Controller;
 
 import com.company.DB.DataBaseController;
 import com.company.Model.Employee;
+import com.company.Model.List;
 import com.company.Model.Manager;
 import com.company.Model.Tradesman;
 import com.company.View.AddPanel;
@@ -50,7 +51,7 @@ public final class AddingAndValidationController {
     private static boolean isValueValid(String val, boolean onlyLetters, int len) {
 
         if (onlyLetters) {
-            if (!val.matches("[a-zA-Z]+") || val.length() == 0 || val.length() > len) {
+            if (!val.matches("[a-zA-Z-]+") || val.length() == 0 || val.length() > len) {
                 return false;
             }
         } else {
@@ -61,7 +62,8 @@ public final class AddingAndValidationController {
         return true;
     }
 
-    public static boolean addEmployeeWithValidation(String pesel, String name, String lName, String job, String team, String salary, String phone) {
+    public static boolean employeeValidation(String pesel, String name, String lName, String job, String team,
+                                             String salary, String phone, boolean update) {
         char[] p = pesel.toCharArray();
 
         if (team.equals("")) {
@@ -92,6 +94,22 @@ public final class AddingAndValidationController {
             return false;
         }
 
+        BigDecimal s = new BigDecimal(salary);
+
+        if (update == true) {
+            int i = ListController.isEmployeeExists(pesel);
+            if (i > 0) {
+                Employee e = List.getListOfEmployees().get(i);
+                e.updateEmployee(pesel, name, lName, job, t, s, phone);
+                if (DataBaseController.updateEmployeeInDB(e, pesel)) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+            return false;
+        }
+
         Employee e = new Employee(pesel, name, lName, job, Integer.parseInt(team), new BigDecimal(salary), phone);
         if (DataBaseController.addToDB(e)) {
             return true;
@@ -100,9 +118,9 @@ public final class AddingAndValidationController {
         }
     }
 
-    public static boolean addEmployeeWithValidation(String pesel, String name, String lName, String job,
-                                                    String team, String salary, String phone, String bonusOrProv,
-                                                    String cardOrlimit) {
+    public static boolean employeeValidation(String pesel, String name, String lName, String job,
+                                             String team, String salary, String phone, String bonusOrProv,
+                                             String cardOrlimit, boolean update) {
         char[] p = pesel.toCharArray();
         if (team.equals("")) {
             return false;
@@ -119,7 +137,7 @@ public final class AddingAndValidationController {
         if (!isValueValid(lName, true, Employee.MAX_LNAME_LEN)) {
             return false;
         }
-        if (!isValueValid(job, true, Employee.MAX_JOB_LEN)) {
+        if (!isValueValid(job, false, Employee.MAX_JOB_LEN)) {
             return false;
         }
         if (t <= 0) {
@@ -141,6 +159,20 @@ public final class AddingAndValidationController {
                 return false;
             }
 
+            if (update == true) {
+                int i = ListController.isEmployeeExists(pesel);
+                if (i > 0) {
+                    Manager m = (Manager) List.getListOfEmployees().get(i);
+                    m.updateEmployee(pesel, name, lName, job, t, s, phone, new BigDecimal(bonusOrProv), cardOrlimit);
+                    if (DataBaseController.updateEmployeeInDB(m, pesel)) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+                return false;
+            }
+
             Manager m = new Manager(pesel, name, lName, job, t, s, phone, new BigDecimal(bonusOrProv), cardOrlimit);
 
             if (DataBaseController.addToDB(m)) {
@@ -153,6 +185,20 @@ public final class AddingAndValidationController {
                 return false;
             }
             if (!isValueValid(cardOrlimit)) {
+                return false;
+            }
+
+            if (update == true) {
+                int i = ListController.isEmployeeExists(pesel);
+                if (i > 0) {
+                    Tradesman tm = (Tradesman) List.getListOfEmployees().get(i);
+                    tm.updateEmployee(pesel, name, lName, job, t, s, phone, new BigDecimal(bonusOrProv), new BigDecimal(cardOrlimit));
+                    if (DataBaseController.updateEmployeeInDB(tm, pesel)) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
                 return false;
             }
 
