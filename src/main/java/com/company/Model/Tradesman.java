@@ -26,15 +26,15 @@ public final class Tradesman extends Employee implements Statements {
     @Override
     public String insertStatement() {
         String statement = String.format("INSERT INTO employees " +
-                        "(pesel, first_name, last_name, job, team, salary, phone_nr, provision, limit_of_provision) VALUES" +
-                        "('%s', '%s','%s','%s','%s','%s','%s');", this.pesel, this.name, this.lastName,
+                        "(pesel, first_name, last_name, job, team, salary, phone_nr, provision, limit_of_provision) VALUES " +
+                        "('%s', '%s','%s','%s','%s','%s','%s', '%s', '%s');", this.pesel, this.name, this.lastName,
                 this.job, this.team, this.salary, this.phoneNumber, this.provision, this.limitOfProvision);
         return statement;
     }
 
     @Override
     public String updateStatement() {
-        String statement = String.format("UPDATE employees" +
+        String statement = String.format("UPDATE employees " +
                         "SET pesel='%s', first_name='%s', last_name='%s', job='%s'," +
                         "team='%s', salary='%s', phone_nr='%s', provision='%s', limit_of_provision='%s'",
                 this.pesel, this.name, this.lastName,

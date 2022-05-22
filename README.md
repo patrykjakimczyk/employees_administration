@@ -9,7 +9,7 @@ Main window of the application has 4 options to choose:
 
 1. List of Employees
 2. Add an employee
-3. Search and edit/delete an employee **(editing in progress)**
+3. Search and edit/delete an employee
 4. Exit
 
 ### 1. List of employees
@@ -18,13 +18,13 @@ In this option you can look through your whole list of employees using two butto
 
 ### 2. Add employee
 
-Here you are able to add an employee to a database. You can choose between 3 options: **"Manager"**, **"Tradesman"** and **"Other job
-title"**. First two are options, that have 2 extra informations to insert.
+Here you are able to add an employee to a database. You can choose between 3 options: **"Manager"**, **"Tradesman"**
+and **"Other job title"**. First two are options, that have 2 extra informations to insert.
 
 ### 3. Search and edit/delete an employee
 
 It allows you to search for a particular employee with their pesel number. If an employee is found, user is allowed to
-delete this employee or update **(not yet)** theirs informations.
+delete this employee or update theirs informations.
 
 ### 4. Exit
 
@@ -59,7 +59,7 @@ This is a package that contains all employees classes and class with ArrayList w
 
 ### View package
 
-Package with all Swing panels and frames, that create GUI.
+Package with all Swing panels and frames as singletons, that create GUI.
 
 ## How to get started?
 

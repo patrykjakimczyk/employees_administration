@@ -51,8 +51,7 @@ public final class DataBaseController {
     }
 
     public static boolean updateEmployeeInDB(Employee em, String pesel) {
-        String query = em.updateStatement() + "WHERE pesel='" + pesel + "';";
-        System.out.println(query);
+        String query = em.updateStatement() + " WHERE pesel='" + pesel + "';";
 
         try {
             Statement statement = dbConnection.getConnection().createStatement();
@@ -62,6 +61,23 @@ public final class DataBaseController {
             return false;
         }
         return true;
+    }
+
+    public static int howManyTeamsInDB() {
+        String query = "SELECT COUNT(*) FROM teams;";
+        ResultSet resultSet;
+        int amount;
+
+        try {
+            Statement statement = dbConnection.getConnection().createStatement();
+            resultSet = statement.executeQuery(query);
+            resultSet.next();
+            amount = Integer.parseInt(resultSet.getString(1));
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 0;
+        }
+        return amount;
     }
 
 }

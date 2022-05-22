@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public final class ListPanel extends JPanel {
+    private static ListPanel instance = null;
     public JLabel pesel;
     public JLabel name;
     public JLabel lastName;
@@ -21,6 +22,7 @@ public final class ListPanel extends JPanel {
     public JLabel lLimit;
     public JLabel position;
     public JButton returnBtn;
+    public JButton editBtn;
     public JButton prevBtn;
     public JButton nextBtn;
 
@@ -175,6 +177,11 @@ public final class ListPanel extends JPanel {
         returnBtn.setLocation(150, 500);
         this.add(returnBtn);
 
+        editBtn = new JButton("Edit");
+        editBtn.setSize(80, 40);
+        editBtn.setLocation(250, 500);
+        this.add(editBtn);
+
         prevBtn = new JButton("Previous");
         prevBtn.setSize(100, 40);
         prevBtn.setLocation(420, 500);
@@ -184,5 +191,12 @@ public final class ListPanel extends JPanel {
         nextBtn.setSize(100, 40);
         nextBtn.setLocation(550, 500);
         this.add(nextBtn);
+    }
+
+    public static ListPanel getListPanel() {
+        if (instance == null) {
+            instance = new ListPanel();
+        }
+        return instance;
     }
 }

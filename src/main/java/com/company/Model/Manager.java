@@ -27,8 +27,8 @@ public final class Manager extends Employee implements Statements {
     @Override
     public String insertStatement() {
         String statement = String.format("INSERT INTO employees " +
-                        "(pesel, first_name, last_name, job, team, salary, phone_nr, bonus_salary, nr_of_card) VALUES" +
-                        "('%s', '%s','%s','%s','%s','%s','%s');", this.pesel, this.name, this.lastName,
+                        "(pesel, first_name, last_name, job, team, salary, phone_nr, bonus_salary, nr_of_card ) VALUES " +
+                        "('%s', '%s','%s','%s','%s','%s','%s', '%s', '%s');", this.pesel, this.name, this.lastName,
                 this.job, this.team, this.salary, this.phoneNumber, this.bonusSalary, this.nrOfBussinessCard);
         return statement;
     }

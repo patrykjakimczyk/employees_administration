@@ -19,18 +19,18 @@ public final class ButtonsController {
             public void actionPerformed(ActionEvent e) {
                 Object source = e.getSource();
                 if (source == menuPanel.list) {
-                    ListPanel listPanel = new ListPanel();
+                    ListPanel listPanel = ListPanel.getListPanel();
                     listPanelActionListeners(frame, listPanel, menuPanel);
                     ListController.updateListOfEmployees();
                     size = List.getListOfEmployees().size();
-                    DisplayController.displayEmployee(List.getListOfEmployees().get(0), listPanel, index);
+                    DisplayController.displayEmployee(List.getListOfEmployees().get(index), listPanel, index);
                     frame.changeView(listPanel);
                 } else if (source == menuPanel.addEmployee) {
-                    AddPanel addPanel = new AddPanel();
+                    AddPanel addPanel = AddPanel.getAddPanel();
                     frame.changeView(addPanel);
                     addPanelActionListeners(frame, addPanel, menuPanel);
                 } else if (source == menuPanel.searchEmployee) {
-                    SearchPanel searchPanel = new SearchPanel();
+                    SearchPanel searchPanel = SearchPanel.getSearchPanel();
                     frame.changeView(searchPanel);
                     searchActionListener(frame, searchPanel, menuPanel);
                 } else if (source == menuPanel.exit) {
@@ -49,10 +49,16 @@ public final class ButtonsController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Object source = e.getSource();
+                size = List.getListOfEmployees().size();
+                ListController.updateListOfEmployees();
                 if (source == listPanel.returnBtn) {
                     frame.changeView(menuPanel);
+                } else if (source == listPanel.editBtn) {
+                    EditPanel editPanel = EditPanel.getEditPanel();
+                    frame.changeView(editPanel);
+                    DisplayController.editView(List.getListOfEmployees().get(index), editPanel);
+                    listEditActionListener(frame, listPanel, editPanel, index);
                 } else if (source == listPanel.nextBtn) {
-                    ListController.updateListOfEmployees();
                     if (index + 1 < size) {
                         index++;
                         DisplayController.displayEmployee(List.getListOfEmployees().get(index), listPanel, index);
@@ -69,6 +75,7 @@ public final class ButtonsController {
             }
         };
         listPanel.returnBtn.addActionListener(actionListener);
+        listPanel.editBtn.addActionListener(actionListener);
         listPanel.nextBtn.addActionListener(actionListener);
         listPanel.prevBtn.addActionListener(actionListener);
     }
@@ -225,7 +232,7 @@ public final class ButtonsController {
                         searchPanel.status.setVisible(true);
                     } else {
                         searchPanel.status.setText("");
-                        EditPanel editPanel = new EditPanel();
+                        EditPanel editPanel = EditPanel.getEditPanel();
                         frame.changeView(editPanel);
                         editActionListener(frame, searchPanel, editPanel, index);
                         DisplayController.editView(List.getListOfEmployees().get(index), editPanel);
@@ -240,6 +247,42 @@ public final class ButtonsController {
         searchPanel.returnBtn.addActionListener(actionListener);
     }
 
+    public static void listEditActionListener(MainFrame frame, ListPanel listPanel, EditPanel editPanel, int index) {
+        ActionListener actionListener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Object source = e.getSource();
+                if (source == editPanel.returnBtn) {
+                    DisplayController.displayEmployee(List.getListOfEmployees().get(index), listPanel, index);
+                    frame.changeView(listPanel);
+                } else if (source == editPanel.deleteBtn) {
+                    boolean isDeleted = DataBaseController.deleteEmployeeFromDB(List.getListOfEmployees().get(index).getPesel());
+                    if (isDeleted == true) {
+                        editPanel.status.setForeground(Color.green);
+                        editPanel.status.setText("Employee has been successfully deleted");
+                        editPanel.status.setVisible(true);
+                        editPanel.deleteBtn.setEnabled(false);
+                        editPanel.updateBtn.setEnabled(false);
+                    } else {
+                        editPanel.status.setForeground(Color.red);
+                        editPanel.status.setText("Employee hasn't been deleted");
+                        editPanel.status.setVisible(true);
+                    }
+                    ListController.updateListOfEmployees();
+                } else if (source == editPanel.updateBtn) {
+                    UpdatePanel updatePanel = UpdatePanel.getUpdatePanel();
+                    frame.changeView(updatePanel);
+                    updateActionListener(frame, editPanel, updatePanel, index);
+                    DisplayController.updateView(List.getListOfEmployees().get(index), updatePanel);
+                }
+
+            }
+        };
+        editPanel.returnBtn.addActionListener(actionListener);
+        editPanel.updateBtn.addActionListener(actionListener);
+        editPanel.deleteBtn.addActionListener(actionListener);
+    }
+
     public static void editActionListener(MainFrame frame, SearchPanel searchPanel, EditPanel editPanel, int index) {
         ActionListener actionListener = new ActionListener() {
             @Override
@@ -252,14 +295,16 @@ public final class ButtonsController {
                         editPanel.status.setForeground(Color.green);
                         editPanel.status.setText("Employee has been successfully deleted");
                         editPanel.status.setVisible(true);
+                        editPanel.deleteBtn.setEnabled(false);
+                        editPanel.updateBtn.setEnabled(false);
+                        ButtonsController.index = 0;
                     } else {
                         editPanel.status.setForeground(Color.red);
                         editPanel.status.setText("Employee hasn't been deleted");
                         editPanel.status.setVisible(true);
                     }
-                    editPanel.deleteBtn.setEnabled(false);
                 } else if (source == editPanel.updateBtn) {
-                    UpdatePanel updatePanel = new UpdatePanel();
+                    UpdatePanel updatePanel = UpdatePanel.getUpdatePanel();
                     frame.changeView(updatePanel);
                     updateActionListener(frame, editPanel, updatePanel, index);
                     DisplayController.updateView(List.getListOfEmployees().get(index), updatePanel);

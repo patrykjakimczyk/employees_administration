@@ -51,7 +51,7 @@ public final class AddingAndValidationController {
     private static boolean isValueValid(String val, boolean onlyLetters, int len) {
 
         if (onlyLetters) {
-            if (!val.matches("[a-zA-Z-]+") || val.length() == 0 || val.length() > len) {
+            if (!val.matches("[a-zA-Z- ]+") || val.length() == 0 || val.length() > len) {
                 return false;
             }
         } else {
@@ -98,7 +98,7 @@ public final class AddingAndValidationController {
 
         if (update == true) {
             int i = ListController.isEmployeeExists(pesel);
-            if (i > 0) {
+            if (i >= 0) {
                 Employee e = List.getListOfEmployees().get(i);
                 e.updateEmployee(pesel, name, lName, job, t, s, phone);
                 if (DataBaseController.updateEmployeeInDB(e, pesel)) {
@@ -122,6 +122,7 @@ public final class AddingAndValidationController {
                                              String team, String salary, String phone, String bonusOrProv,
                                              String cardOrlimit, boolean update) {
         char[] p = pesel.toCharArray();
+
         if (team.equals("")) {
             return false;
         }
@@ -134,6 +135,7 @@ public final class AddingAndValidationController {
         if (!isValueValid(name, true, Employee.MAX_NAME_LEN)) {
             return false;
         }
+
         if (!isValueValid(lName, true, Employee.MAX_LNAME_LEN)) {
             return false;
         }
@@ -161,10 +163,12 @@ public final class AddingAndValidationController {
 
             if (update == true) {
                 int i = ListController.isEmployeeExists(pesel);
-                if (i > 0) {
+
+                if (i >= 0) {
                     Manager m = (Manager) List.getListOfEmployees().get(i);
-                    m.updateEmployee(pesel, name, lName, job, t, s, phone, new BigDecimal(bonusOrProv), cardOrlimit);
+
                     if (DataBaseController.updateEmployeeInDB(m, pesel)) {
+                        System.out.println(m.getPesel() + " " + pesel);
                         return true;
                     } else {
                         return false;

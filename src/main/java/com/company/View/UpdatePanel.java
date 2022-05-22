@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public final class UpdatePanel extends JPanel {
+    private static UpdatePanel instance = null;
     public JTextField pesel;
     public JTextField name;
     public JTextField lastName;
@@ -184,5 +185,12 @@ public final class UpdatePanel extends JPanel {
         updateBtn.setSize(80, 40);
         updateBtn.setLocation(450, 500);
         this.add(updateBtn);
+    }
+
+    public static UpdatePanel getUpdatePanel() {
+        if (instance == null) {
+            instance = new UpdatePanel();
+        }
+        return instance;
     }
 }

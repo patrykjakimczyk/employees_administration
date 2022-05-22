@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public final class SearchPanel extends JPanel {
+    private static SearchPanel instance = null;
     public JTextField search;
     public JButton returnBtn;
     public JButton searchBtn;
@@ -48,5 +49,12 @@ public final class SearchPanel extends JPanel {
         status.setVisible(false);
         status.setHorizontalAlignment(SwingConstants.CENTER);
         this.add(status);
+    }
+    
+    public static SearchPanel getSearchPanel() {
+        if (instance == null) {
+            instance = new SearchPanel();
+        }
+        return instance;
     }
 }

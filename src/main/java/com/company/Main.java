@@ -6,6 +6,6 @@ import com.company.View.MainFrame;
 public class Main {
     public static void main(String[] args) {
         DataBaseConnection dbc = new DataBaseConnection();
-        MainFrame MyFrame = new MainFrame();
+        MainFrame MyFrame = MainFrame.getMainFrame();
     }
 }

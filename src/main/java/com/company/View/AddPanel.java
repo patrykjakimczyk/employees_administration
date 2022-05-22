@@ -1,12 +1,14 @@
 package com.company.View;
 
 import com.company.Controller.ButtonsController;
+import com.company.DB.DataBaseController;
 
 import javax.swing.*;
 import java.awt.*;
 
 public final class AddPanel extends JPanel {
     public static String[] choices = {"Manager", "Tradesman", "Other job title"};
+    private static AddPanel instance = null;
     public JComboBox choice;
     public JTextField pesel;
     public JTextField name;
@@ -85,7 +87,8 @@ public final class AddPanel extends JPanel {
         job.setFont(new Font("Arial", Font.PLAIN, 25));
         this.add(job);
 
-        JLabel lTeam = new JLabel("Team: ");
+        int amount = DataBaseController.howManyTeamsInDB();
+        JLabel lTeam = new JLabel("Team (1-" + amount + "): ");
         lTeam.setSize(200, 30);
         lTeam.setLocation(120, 265);
         lTeam.setFont(new Font("Arial", Font.PLAIN, 30));
@@ -196,5 +199,12 @@ public final class AddPanel extends JPanel {
         this.add(addBtn);
 
         ButtonsController.choiceActionListener(this, choice, addBtn);
+    }
+
+    public static AddPanel getAddPanel() {
+        if (instance == null) {
+            instance = new AddPanel();
+        }
+        return instance;
     }
 }

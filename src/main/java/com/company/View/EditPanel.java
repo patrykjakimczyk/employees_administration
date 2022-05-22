@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public final class EditPanel extends JPanel {
-
+    private static EditPanel instance = null;
     public JLabel pesel;
     public JLabel name;
     public JLabel lastName;
@@ -187,5 +187,12 @@ public final class EditPanel extends JPanel {
         status.setVisible(false);
         status.setHorizontalAlignment(SwingConstants.CENTER);
         this.add(status);
+    }
+
+    public static EditPanel getEditPanel() {
+        if (instance == null) {
+            instance = new EditPanel();
+        }
+        return instance;
     }
 }

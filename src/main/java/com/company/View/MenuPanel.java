@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public final class MenuPanel extends JPanel {
+    private static MenuPanel instance = null;
     public final JButton list;
     public final JButton addEmployee;
     public final JButton searchEmployee;
@@ -38,5 +39,12 @@ public final class MenuPanel extends JPanel {
         exit.setText("4. Exit");
         exit.setFocusable(false);
         this.add(exit);
+    }
+
+    public static MenuPanel getMenuPanel() {
+        if (instance == null) {
+            instance = new MenuPanel();
+        }
+        return instance;
     }
 }
