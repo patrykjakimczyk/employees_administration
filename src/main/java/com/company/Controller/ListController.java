@@ -10,6 +10,7 @@ import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.stream.IntStream;
 
 public final class ListController {
 
@@ -71,14 +72,18 @@ public final class ListController {
     }
 
     public static int isEmployeeExists(String pesel) {
-        List.getListOfEmployees();
-        int index = 0;
-        for (Employee e : List.getListOfEmployees()) {
-            if (e.getPesel().equals(pesel)) {
-                return index;
-            }
-            index++;
-        }
-        return -1;
+        //int index = 0;
+        ArrayList<Employee> list = List.getListOfEmployees();
+        int index = IntStream.range(0, list.size())
+                .filter(i -> list.get(i).getPesel().equals(pesel))
+                .findFirst().orElse(-1);
+        return index;
+//        for (Employee e : List.getListOfEmployees()) {
+//            if (e.getPesel().equals(pesel)) {
+//                return index;
+//            }
+//            index++;
+//        }
+//        return -1;
     }
 }
