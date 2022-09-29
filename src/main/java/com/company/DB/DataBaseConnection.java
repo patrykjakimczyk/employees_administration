@@ -7,7 +7,7 @@ import java.sql.DriverManager;
 
 @Getter
 public final class DataBaseConnection {
-    private static final String url = "jdbc:postgresql://localhost:5432/jakimczyk.company";
+    private static final String url = "jdbc:postgresql://localhost:5432/company";
     private static final String user = "postgres";
     private static final String password = "admin";
     public Connection connection;
@@ -16,6 +16,7 @@ public final class DataBaseConnection {
         try {
             connection = DriverManager.getConnection(url, user, password);
         } catch (Exception e) {
+            System.out.println(e);
             System.out.println("Couldn't connect to database");
         }
     }

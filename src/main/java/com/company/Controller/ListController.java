@@ -2,7 +2,7 @@ package com.company.Controller;
 
 import com.company.DB.DataBaseController;
 import com.company.Model.Employee;
-import com.company.Model.List;
+import com.company.Model.EmployeesList;
 import com.company.Model.Manager;
 import com.company.Model.Tradesman;
 
@@ -15,11 +15,13 @@ import java.util.stream.IntStream;
 public final class ListController {
 
     public static void updateListOfEmployees() {
-        ArrayList<Employee> list = List.getListOfEmployees();
-        if (list.size() == 0) {
+        ArrayList<Employee> list = EmployeesList.getListOfEmployees();
+        if (list.isEmpty()) {
             addResultSetToList(DataBaseController.employeesListFromDB());
+            EmployeesList.setCurrentEmployee(null);
         } else {
             list.removeAll(list);
+            EmployeesList.setCurrentEmployee(null);
             addResultSetToList(DataBaseController.employeesListFromDB());
         }
     }
@@ -39,7 +41,7 @@ public final class ListController {
                             new BigDecimal(table.getString("provision")),
                             new BigDecimal(table.getString("limit_of_provision"))
                     );
-                    List.getListOfEmployees().add(tm);
+                    EmployeesList.getListOfEmployees().add(tm);
                 } else if (table.getString("job").equals("Manager")) {
                     Manager m = new Manager(
                             table.getString("pesel"),
@@ -52,7 +54,7 @@ public final class ListController {
                             new BigDecimal(table.getString("bonus_salary")),
                             table.getString("nr_of_card")
                     );
-                    List.getListOfEmployees().add(m);
+                    EmployeesList.getListOfEmployees().add(m);
                 } else {
                     Employee e = new Employee(
                             table.getString("pesel"),
@@ -63,7 +65,7 @@ public final class ListController {
                             new BigDecimal(table.getString("salary")),
                             table.getString("phone_nr")
                     );
-                    List.getListOfEmployees().add(e);
+                    EmployeesList.getListOfEmployees().add(e);
                 }
             }
         } catch (SQLException e) {
@@ -72,18 +74,9 @@ public final class ListController {
     }
 
     public static int isEmployeeExists(String pesel) {
-        //int index = 0;
-        ArrayList<Employee> list = List.getListOfEmployees();
-        int index = IntStream.range(0, list.size())
+        ArrayList<Employee> list = EmployeesList.getListOfEmployees();
+        return IntStream.range(0, list.size())
                 .filter(i -> list.get(i).getPesel().equals(pesel))
                 .findFirst().orElse(-1);
-        return index;
-//        for (Employee e : List.getListOfEmployees()) {
-//            if (e.getPesel().equals(pesel)) {
-//                return index;
-//            }
-//            index++;
-//        }
-//        return -1;
     }
 }

@@ -1,7 +1,7 @@
 package com.company.Controller;
 
 import com.company.Model.Employee;
-import com.company.Model.List;
+import com.company.Model.EmployeesList;
 import com.company.Model.Manager;
 import com.company.Model.Tradesman;
 import com.company.View.EditPanel;
@@ -11,10 +11,9 @@ import com.company.View.UpdatePanel;
 public final class DisplayController {
     public static void displayEmployee(Employee e, ListPanel listPanel, int index) {
         ListController.updateListOfEmployees();
-        int size = List.getListOfEmployees().size();
+        int size = EmployeesList.getListOfEmployees().size();
         index++;
         listPanel.position.setText("Employee: " + index + "/" + size);
-
         listPanel.pesel.setText(e.getPesel());
         listPanel.name.setText(e.getName());
         listPanel.lastName.setText(e.getLastName());
@@ -22,7 +21,7 @@ public final class DisplayController {
         listPanel.team.setText(String.valueOf(e.getTeam()));
         listPanel.salary.setText(String.valueOf(e.getSalary()));
         listPanel.phone.setText(String.valueOf(e.getPhoneNumber()));
-
+        
         if (e instanceof Tradesman) {
             Tradesman tm = (Tradesman) e;
             listPanel.provision.setText(String.valueOf(tm.getProvision()));

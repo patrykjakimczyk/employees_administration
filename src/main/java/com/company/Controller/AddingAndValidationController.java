@@ -2,7 +2,7 @@ package com.company.Controller;
 
 import com.company.DB.DataBaseController;
 import com.company.Model.Employee;
-import com.company.Model.List;
+import com.company.Model.EmployeesList;
 import com.company.Model.Manager;
 import com.company.Model.Tradesman;
 import com.company.View.AddPanel;
@@ -99,7 +99,7 @@ public final class AddingAndValidationController {
         if (update == true) {
             int i = ListController.isEmployeeExists(pesel);
             if (i >= 0) {
-                Employee e = List.getListOfEmployees().get(i);
+                Employee e = EmployeesList.getListOfEmployees().get(i);
                 e.updateEmployee(pesel, name, lName, job, t, s, phone);
                 if (DataBaseController.updateEmployeeInDB(e, pesel)) {
                     return true;
@@ -165,7 +165,7 @@ public final class AddingAndValidationController {
                 int i = ListController.isEmployeeExists(pesel);
 
                 if (i >= 0) {
-                    Manager m = (Manager) List.getListOfEmployees().get(i);
+                    Manager m = (Manager) EmployeesList.getListOfEmployees().get(i);
 
                     if (DataBaseController.updateEmployeeInDB(m, pesel)) {
                         System.out.println(m.getPesel() + " " + pesel);
@@ -195,7 +195,7 @@ public final class AddingAndValidationController {
             if (update == true) {
                 int i = ListController.isEmployeeExists(pesel);
                 if (i > 0) {
-                    Tradesman tm = (Tradesman) List.getListOfEmployees().get(i);
+                    Tradesman tm = (Tradesman) EmployeesList.getListOfEmployees().get(i);
                     tm.updateEmployee(pesel, name, lName, job, t, s, phone, new BigDecimal(bonusOrProv), new BigDecimal(cardOrlimit));
                     if (DataBaseController.updateEmployeeInDB(tm, pesel)) {
                         return true;
