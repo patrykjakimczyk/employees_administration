@@ -86,3 +86,5 @@ src/main/java/com.company/DB/DataBaseConnection.java
 ```
 
 7. Run application
+
+### Also, you can create executable .jar file using Maven's package method

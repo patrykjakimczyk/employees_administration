@@ -89,6 +89,7 @@ public final class ButtonsController {
         ActionListener actionListener = e -> {
             Object source = e.getSource();
             Object chosen = choice.getSelectedItem();
+            addPanel.status.setText("");
 
             if (source == choice) {
                 if (chosen.equals("Manager")) {
@@ -228,6 +229,7 @@ public final class ButtonsController {
     public static void searchActionListener(MainFrame frame, SearchPanel searchPanel, MenuPanel menuPanel) {
         ActionListener actionListener = e -> {
             Object source = e.getSource();
+            searchPanel.status.setText("");
 
             if (source == searchPanel.searchBtn) {
                 ListController.updateListOfEmployees();
@@ -254,6 +256,7 @@ public final class ButtonsController {
     public static void listEditActionListener(MainFrame frame, ListPanel listPanel, EditPanel editPanel, int index) {
         ActionListener actionListener = e -> {
             Object source = e.getSource();
+            editPanel.status.setText("");
 
             if (source == editPanel.returnBtn) {
                 DisplayController.displayEmployee(EmployeesList.getListOfEmployees().get(index), listPanel, index);
@@ -287,6 +290,8 @@ public final class ButtonsController {
     public static void editActionListener(MainFrame frame, SearchPanel searchPanel, EditPanel editPanel, int index) {
         ActionListener actionListener = e -> {
             Object source = e.getSource();
+            editPanel.status.setText("");
+
             if (source == editPanel.deleteBtn) {
                 ListController.updateListOfEmployees();
                 boolean isDeleted = DataBaseController.deleteEmployeeFromDB(EmployeesList.getListOfEmployees().get(index).getPesel());
@@ -321,6 +326,8 @@ public final class ButtonsController {
     public static void updateActionListener(MainFrame frame, EditPanel editPanel, UpdatePanel updatePanel, int index) {
         ActionListener actionListener = e -> {
             Object source = e.getSource();
+            updatePanel.status.setText("");
+
             if (source == updatePanel.updateBtn) {
                 String pesel = updatePanel.pesel.getText();
                 String name = updatePanel.name.getText();
@@ -343,9 +350,7 @@ public final class ButtonsController {
                         updatePanel.status.setForeground(Color.red);
                         updatePanel.status.setText("Employee hasn't been updated(Entered data are incorrect)");
                         updatePanel.status.setVisible(true);
-
                     }
-
                 } else if (job.equals("Tradesman")) {
                     if (AddingAndValidationController.employeeValidation(pesel, name, lname, job, team,
                             salary, phone, provision, limit, true)) {
@@ -356,7 +361,6 @@ public final class ButtonsController {
                         updatePanel.status.setForeground(Color.red);
                         updatePanel.status.setText("Employee hasn't been updated(Entered data are incorrect)");
                         updatePanel.status.setVisible(true);
-
                     }
                 } else {
                     if (AddingAndValidationController.employeeValidation(pesel, name, lname, job, team,
@@ -368,7 +372,6 @@ public final class ButtonsController {
                         updatePanel.status.setForeground(Color.red);
                         updatePanel.status.setText("Employee hasn't been updated(Entered data are incorrect)");
                         updatePanel.status.setVisible(true);
-
                     }
                 }
             } else if (source == updatePanel.returnBtn) {

@@ -17,9 +17,9 @@
         </dependency>
 
         <dependency>
-            <groupId>postgresql</groupId>
+            <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
-            <version>9.0-801.jdbc4</version>
+            <version>42.3.4</version>
         </dependency>
     </dependencies>
 
@@ -30,6 +30,27 @@
 
     <build>
         <plugins>
+            <!-- Method 1 -->
+            <!-- Copy dependency libraries jar files to a separated LIB folder -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <configuration>
+                    <outputDirectory>${project.build.directory}/lib</outputDirectory>
+                    <excludeTransitive>false</excludeTransitive>
+                    <stripVersion>false</stripVersion>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>copy-dependencies</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
             <plugin>
                 <!-- Build an executable JAR -->
                 <groupId>org.apache.maven.plugins</groupId>
@@ -39,11 +60,23 @@
                     <archive>
                         <manifest>
                             <mainClass>com.company.Main</mainClass>
+                            <addClasspath>true</addClasspath>
+                            <classpathPrefix>lib/</classpathPrefix>
                         </manifest>
+                        <manifestEntries>
+                            <Class-Path>lib/</Class-Path>
+                        </manifestEntries>
                     </archive>
                 </configuration>
             </plugin>
         </plugins>
     </build>
+    <repositories>
+        <repository>
+            <id>clojars</id>
+            <name>Clojars</name>
+            <url>https://repo.clojars.org/</url>
+        </repository>
+    </repositories>
 
 </project>
